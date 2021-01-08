@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body class="page">
+
+  <header class="header page__header">
+    <div class="header__logo">
+      <img src="./images/Vector.svg" alt="Логотип">
+    </div>
+  </header>
+  <main class="content page__content">
+    <div class="profile">
+
+      <img src="./images/Kusto.jpg" alt="фото пользователя" class="profile__photo">
+      <div class="profile__block">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__info">Исследователь океана</p>
+        <span class="profile__icon"></span>
+      </div>
+      <img src="./images/Vector_plus.svg" alt="кнопка плюс" class="profile__plus">
+    </div>
+    <section class="gallary">
+      <ul class="gallary__cards">
+
+        <li class="gallary__card">
+          <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
+          <p class="gallary__text">Карачаевск</p>
+          <span class="gallary__pic"></span>
+        </li>
+
+        <li class="gallary__card">
+          <img src="./images/elbrus.jpg" alt="виды Эльбруса" class="gallary__item">
+          <p class="gallary__text">Гора Эльбрус</p>
+          <span class="gallary__pic gallary__pic_active "></span>
+        </li>
+
+        <li class="gallary__card">
+          <img src="./images/dombay.jpg" alt="виды Домбая" class="gallary__item">
+          <p class="gallary__text">Домбай</p>
+          <span class="gallary__pic"></span>
+        </li>
+
+        <li class="gallary__card">
+          <img src="./images/elbrus.jpg" alt="виды Эльбруса" class="gallary__item">
+          <p class="gallary__text">Гора Эльбрус</p>
+          <span class="gallary__pic"></span>
+        </li>
+
+        <li class="gallary__card">
+          <img src="./images/dombay.jpg" alt="виды Домбая" class="gallary__item">
+          <p class="gallary__text">Домбай</p>
+          <span class="gallary__pic"></span>
+        </li>
+
+        <li class="gallary__card">
+          <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
+          <p class="gallary__text">Карачаево-Черкесск</p>
+          <span class="gallary__pic"></span>
+        </li>
+
+
+      </ul>
+    </section>
+
+  </main>
+  <footer class="footer page__content">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
+  <section class="overlay">
+    <form class="popup">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <p class="popup__name"><input type="text" value="Жак-Ив Кусто" class="popup__input-name"></p>
+      <p class="popup__info"><input type="text" value="Исследователь океана" class="popup__input-info"></p>
+      <!--<div class="popup__button"><input submit="text" value="Сохранить"></div>-->
+      <button class="popup__button" type="submit">Сохранить</button>
+      <!--<h2 class="popup__title">Редактировать профиль</h2>
+      <p class="popup__name">Жак-Ив Кусто</p>
+      <p class="popup__info">Исследователь океана</p>
+      <div class="popup__button">Сохранить</div>-->
+      <span class="popup__close-icon"></span>
+    </form>
+  </section>
+  <script src="./sctipts/index.js"></script>
+</body>
+
+</html>
