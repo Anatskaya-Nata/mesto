@@ -1,6 +1,6 @@
-.popup__input-info{
-    border: none;
-    width: 238px;
+.popup__info_input_job{
+   
+    /*width: 238px;*/
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;  

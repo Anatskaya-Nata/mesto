@@ -1,18 +1,18 @@
 .profile__block{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 0 36px;
-    position: relative;
-    /*align-items: flex-end;*/
+max-width: 282px;
+display: flex;
+flex-direction: column;
+margin-bottom: 36px;
+
 }
 
 @media screen and (min-width: 1280px){
     .profile__block{
-        position: absolute;
+
+       position: absolute;
         top: 22px;
         left: 150px;
-        align-items: flex-start;
+justify-content: flex-start;
         max-width: 336px;
         margin: 0 0 0 0; 
 }
