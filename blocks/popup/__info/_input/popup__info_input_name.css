@@ -1,6 +1,7 @@
 .popup__info_input_name{
     /*width: 238px;*/
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;   
+    margin: 0 0 30px 0;
+  /* поскольку нижний margin у поля "Имя" и у поля "О себе" разный, я не могу его 
+  разместить в родительском блоке, поэтому переношу в модификатор, допустимо ли это?
+  */
 }

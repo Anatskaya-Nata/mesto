@@ -1,10 +1,10 @@
 .popup__info{
-    font-weight: 400px;
+    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-    padding: 0 0 13px 0;
-    margin: 0 0 45px 0;
+    padding: 0 0 10px 0;
+ 
     border-bottom:1px solid rgba(0, 0, 0, 0.2);
     border-top: none;
     border-right: none;
@@ -16,6 +16,6 @@
     .popup__info{
         width: 358px;
 
-        margin: 0 0 48px 0;   
+     
     }
 }
