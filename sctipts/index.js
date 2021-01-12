@@ -11,8 +11,8 @@ function popupOpen() {
    
     popup.classList.add('popup_active')
 
-    nameInput.value = nameProfile.innerText
-    jobInput.value = jobProfile.innerText
+    nameInput.value = nameProfile.textContent
+    jobInput.value = jobProfile.textContent
 }
 openButton.addEventListener('click', popupOpen)
 
@@ -31,5 +31,5 @@ function handleFormSubmit (evt) {
     popupClose()
 }
 formElement.addEventListener('submit', handleFormSubmit);
-/* что же я такая непонятливая-то(((*/
+
 
