@@ -37,7 +37,7 @@
     <section class="gallary">
       <ul class="gallary__cards">
 
-        <li class="gallary__card">
+      <!--  <li class="gallary__card">
           <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
           <div class="gallary__info">
             <p class="gallary__text">Карачаевск</p>
@@ -95,7 +95,7 @@
               <img src="./images/Vector_heart.svg" alt="иконка лайк">
             </button>
           </div>
-        </li>
+        </li>-->
 
 
       </ul>
@@ -125,8 +125,20 @@
     </div>
    
   </section>
-  <script src="./sctipts/index.js"></script>
+  <template class="gallary__template">
+    <li class="gallary__card">
+    <img src="" class="gallary__item" alt="виды" >
+    <div class="gallary__info">
+      <p class="gallary__text"></p>
+      <button class="gallary__icon" type="button">
+        <img src="./images/Vector_heart.svg" alt="иконка лайк">
+      </button>
+    </div>
+  </li>
 
+  </template>
+  <script src="./sctipts/index.js"></script>
+  <script src="./sctipts/addcards.js"></script>
 </body>
 
 </html>
