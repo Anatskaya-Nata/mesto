@@ -5,65 +5,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./style/index.css">
 </head>
 
 <body class="page">
 
   <header class="header page__header">
-    <div class="header__logo">
-      <img src="./images/Vector.svg" alt="Логотип">
-    </div>
+
+    <img src="./images/Vector.svg" alt="Логотип" class="header__logo">
+
   </header>
+
   <main class="content page__content">
-    <div class="profile">
 
+    <section class="profile">
       <img src="./images/Kusto.jpg" alt="фото пользователя" class="profile__photo">
-      <div class="profile__block">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <p class="profile__info">Исследователь океана</p>
-        <span class="profile__icon"></span>
-      </div>
-      <img src="./images/Vector_plus.svg" alt="кнопка плюс" class="profile__plus">
-    </div>
 
+      <div class="profile__block">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__icon" type="button"></button>
+        </div>
+          <p class="profile__job">Исследователь океана</p>
+      </div>
+
+      <button class="profile__plus" type="button">
+        <img src="./images/Vector_plus.svg" alt="кнопка плюс">
+      </button>
+
+    </section>
     <section class="gallary">
       <ul class="gallary__cards">
 
-        <!--<li class="gallary__card">
+      <!--  <li class="gallary__card">
           <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
-          <p class="gallary__text">Карачаевск</p>
-          <span class="gallary__pic"></span>
+          <div class="gallary__info">
+            <p class="gallary__text">Карачаевск</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>
 
         <li class="gallary__card">
           <img src="./images/elbrus.jpg" alt="виды Эльбруса" class="gallary__item">
-          <p class="gallary__text">Гора Эльбрус</p>
-          <span class="gallary__pic gallary__pic_active "></span>
+          <div class="gallary__info">
+            <p class="gallary__text">Гора Эльбрус</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>
 
         <li class="gallary__card">
-          <img src="./images/dombay.jpg" alt="виды Домбая" class="gallary__item">
-          <p class="gallary__text">Домбай</p>
-          <span class="gallary__pic"></span>
+          <img src="./images/chapel-5878656_640.jpg" alt="виды Домбая" class="gallary__item">
+          <div class="gallary__info">
+            <p class="gallary__text">Домбай</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>
 
         <li class="gallary__card">
           <img src="./images/elbrus.jpg" alt="виды Эльбруса" class="gallary__item">
-          <p class="gallary__text">Гора Эльбрус</p>
-          <span class="gallary__pic"></span>
+          <div class="gallary__info">
+            <p class="gallary__text">Гора Эльбрус</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>
 
         <li class="gallary__card">
-          <img src="./images/dombay.jpg" alt="виды Домбая" class="gallary__item">
-          <p class="gallary__text">Домбай</p>
-          <span class="gallary__pic"></span>
+          <img src="./images/mountains-5686361_640.jpg" alt="виды Домбая" class="gallary__item">
+          <div class="gallary__info">
+            <p class="gallary__text">Домбай</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>
 
         <li class="gallary__card">
           <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
-          <p class="gallary__text">Карачаево-Черкесск</p>
-          <span class="gallary__pic"></span>
+          <div class="gallary__info">
+            <p class="gallary__text">Карачаево-Черкесск</p>
+            <button class="gallary__icon" type="button">
+              <img src="./images/Vector_heart.svg" alt="иконка лайк">
+            </button>
+          </div>
         </li>-->
 
 
@@ -74,19 +105,44 @@
   <footer class="footer page__content">
     <p class="footer__text">© 2020 Mesto Russia</p>
   </footer>
-  <section class="overlay">
-    <form class="popup">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <p class="popup__name"><input type="text" value="Жак-Ив Кусто" class="popup__input-name"></p>
-      <p class="popup__info"><input type="text" value="Исследователь океана" class="popup__input-info"></p>
-      
-      <button class="popup__button" type="submit">Сохранить</button>
 
-      <span class="popup__close-icon"></span>
-    </form>
+  <section class="popup">
+    <div class="popup__container">
+
+      <form class="popup__form" name="edit-profie">
+        <h2 class="popup__title">Редактировать профиль</h2>
+
+        <input type="text" name="user-name" placeholder="Имя" value=" "
+          class=" popup__info popup__info_input_name">
+        <input type="text" name="user-job" placeholder="О себе" value=" "
+          class="popup__info popup__info_input_job">
+
+        <button class="popup__button" type="submit">Сохранить</button>
+
+        <button class="popup__close-icon" type="button"></button> 
+      </form>
+   
+    </div>
+   
   </section>
+  <template class="gallary__template">
+    <li class="gallary__card">
+    <img src="" class="gallary__item" alt="виды" >
+    <div class="gallary__info">
+      <p class="gallary__text"></p>
+      <button class="gallary__icon" type="button">
+        <img src="./images/Vector_heart.svg" alt="иконка лайк">
+      </button>
+    </div>
+  </li>
+
+  </template>
   <script src="./sctipts/index.js"></script>
+<<<<<<< HEAD
   <script src="./sctipts/addingcards.js"></script>
+=======
+  <script src="./sctipts/addcards.js"></script>
+>>>>>>> main
 </body>
 
 </html>

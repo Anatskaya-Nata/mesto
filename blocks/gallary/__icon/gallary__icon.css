@@ -1,0 +1,14 @@
+.gallary__icon{
+    width: 22px;
+    height: 19px;
+    background-color: #ffffff;
+    margin-right: 20px;
+    border: none;
+    padding: 0;
+
+
+}
+.gallary__icon:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}

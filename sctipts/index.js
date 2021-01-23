@@ -1,38 +1,35 @@
 let openButton = document.querySelector('.profile__icon')
-let overlay = document.querySelector('.overlay')
-let closeButton = overlay.querySelector('.popup__close-icon')
+let popup = document.querySelector('.popup')
+let closeButton = document.querySelector('.popup__close-icon')
+let formElement = document.querySelector('.popup__form')
+let nameInput = formElement.querySelector('.popup__info_input_name')
+let jobInput = formElement.querySelector('.popup__info_input_job')
+let nameProfile = document.querySelector('.profile__name')
+let jobProfile = document.querySelector('.profile__job')
 
+function popupOpen() {
+   
+    popup.classList.add('popup_active')
 
-/*openButton.addEventListener('click',() => {
-    overlay.classList.toggle('overlay_active')
-})
-
-closeButton.addEventListener('click',() => {
-      overlay.classList.toggle('overlay_active')
-})*/
-function toddlePopup (){
-    overlay.classList.toggle('overlay_active')
+    nameInput.value = nameProfile.textContent
+    jobInput.value = jobProfile.textContent
 }
-openButton.addEventListener('click', toddlePopup)
-closeButton.addEventListener('click', toddlePopup)
+openButton.addEventListener('click', popupOpen)
 
-let formElement = document.querySelector('.popup')
+function popupClose() {
 
+    popup.classList.remove('popup_active')  
+}
+closeButton.addEventListener('click', popupClose)
 
 function handleFormSubmit (evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
 
-    let nameInput = formElement.querySelector('.popup__input-name')// Воспользуйтесь инструментом .querySelector()
-    let jobInput = formElement.querySelector('.popup__input-info')// Воспользуйтесь инструментом .querySelector()
- 
-      // Получите значение полей из свойства value
-    nameInput.getAttribute('value');
-    jobInput.getAttribute('value');
 
-let nameProfile = document.querySelector('.profile__name')
-let jobProfile = document.querySelector('.profile__info')
-
-    nameProfile.textContent = nameInput.value;
+   nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
+    popupClose()
 }
 formElement.addEventListener('submit', handleFormSubmit);
+
+

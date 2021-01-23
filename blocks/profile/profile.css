@@ -1,5 +1,5 @@
 .profile{
-  display: flex;  
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -7,7 +7,7 @@
 @media screen and (min-width: 1280px){
   .profile{
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     margin-top: 40px;  
