@@ -106,37 +106,83 @@
     <p class="footer__text">© 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup popup_theme_edit">
     <div class="popup__container">
 
-      <form class="popup__form" name="edit-profie">
+      <form class="popup__form" 
+            name="edit-profie">
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input type="text" name="user-name" placeholder="Имя" value=" "
+        <input 
+        type="text" 
+        name="user-name" 
+        placeholder="Имя" 
+        value=" "
           class=" popup__info popup__info_input_name">
-        <input type="text" name="user-job" placeholder="О себе" value=" "
+        <input 
+        type="text" 
+        name="user-job" 
+        placeholder="О себе"
+         value=" "
           class="popup__info popup__info_input_job">
 
         <button class="popup__button" type="submit">Сохранить</button>
 
-        <button class="popup__close-icon" type="button"></button> 
+        <button class="popup__close popup__close_icon_edit" type="button"></button> 
       </form>
    
     </div>
+  </section>
+
+  <section class="popup popup_theme_place">
+    <div class="popup__container">
+
+      <form class="popup__form" 
+            name="new-place">
+        <h2 class="popup__title">Новое место</h2>
+
+        <input 
+        type="text" 
+        name="place" 
+        placeholder="Название" 
+        value=" "
+          class=" popup__info popup__info_input_place">
+        <input 
+        type="text" 
+        name="link" 
+        placeholder="Ссылка на картинку"
+         value=" "
+          class="popup__info popup__info_input_link">
+
+        <button class="popup__button" type="submit">Создать</button>
+
+        <button class="popup__close popup__close_icon_place" type="button"></button> 
+      </form>
+   
+    </div>
+  
    
   </section>
   <template class="gallary__template">
     <li class="gallary__card">
-    <img src="" class="gallary__item" alt="виды" >
+
+        <img src="" class="gallary__item" alt="виды" >
+        <button class="gallary__delete" type="button">
+          <img src="./images/delete.svg" alt="корзина">
+        </button> 
+
+
+ 
     <div class="gallary__info">
       <p class="gallary__text"></p>
       <button class="gallary__icon" type="button">
-        <img src="./images/Vector_heart.svg" alt="иконка лайк">
+      <img src="./images/Vector_heart.svg" alt="иконка лайк">
       </button>
     </div>
   </li>
-
   </template>
+
+
   <script src="./sctipts/index.js"></script>
   <script src="./sctipts/addcards.js"></script>
 </body>

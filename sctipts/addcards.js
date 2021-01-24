@@ -33,5 +33,23 @@ const initialCards = [
 
     galleryVew.querySelector(".gallary__text").textContent = element.name
     galleryVew.querySelector(".gallary__item").src = element.link
-    gallaryCards.append(galleryVew)
+ gallaryCards.append(galleryVew)
+    /*gallaryCards.unshift(galleryVew)*/
   })
+
+function setListeners(card) {
+ card.querySelector('.gallary__delete').addEventListener('click', handleDelete);
+ 
+}
+
+
+
+
+
+
+
+  /*function setListeners(element) {
+    element.querySelector('.delete').addEventListener('click', handleDelete);
+    element.querySelector('.edit').addEventListener('click', handleEdit);
+    element.querySelector('.duplicate').addEventListener('click', handleDuplicate);
+  }*/
