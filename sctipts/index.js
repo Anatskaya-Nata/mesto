@@ -1,72 +1,130 @@
-let openButtonEdit = document.querySelector('.profile__icon')
-let openButtonNewPlace = document.querySelector('.profile__plus')
-let popup = document.querySelector('.popup')
-
-let popupEdit = document.querySelector('.popup.popup_theme_edit')
-let popupNewPlace = document.querySelector('.popup.popup_theme_place')
-
-let closeButtonEdit = document.querySelector('.popup__close_icon_edit')
-let closeButtonNewPlace = document.querySelector('.popup__close_icon_place')
-
-let formElement = document.querySelector('.popup__form')
-let nameInput = formElement.querySelector('.popup__info_input_name')
-let jobInput = formElement.querySelector('.popup__info_input_job')
-
-let placeInput = document.querySelector('.popup__info_input_place')
-let linkInput = document.querySelector('.popup__info_input_link')
-
-let nameProfile = document.querySelector('.profile__name')
-let jobProfile = document.querySelector('.profile__job')
+const openButtonEdit = document.querySelector('.profile__icon')
+const closeButtonEdit = document.querySelector('.popup__close_icon_edit')
+const popupEdit = document.querySelector('.popup.popup_theme_edit')
+const formEditElement = document.querySelector('.popup__form_theme_edit')
+const nameInput = formEditElement.querySelector('.popup__info_input_name')
+const jobInput = formEditElement.querySelector('.popup__info_input_job')
+const nameProfile = document.querySelector('.profile__name')
+const jobProfile = document.querySelector('.profile__job')
 
 
 
-
-function popupOpen() {
-   
-    /*popup.classList.add('popup_active','popup_theme_edit')*/
-  
-}
-openButtonEdit.addEventListener('click', function openEditPopup() {
+function openEditPopup(){
     popupEdit.classList.add('popup_active')
-
-    nameInput.value = nameProfile.textContent
-    jobInput.value = jobProfile.textContent  
-})
-
-openButtonNewPlace.addEventListener('click',function openPlacePopup() {
-    popupNewPlace.classList.add('popup_active')
-    placeInput.value = placeInput.placeholder
-    linkInput.value = linkInput.placeholder
-})
-
-function closePopupEdit() { 
- 
-    popupEdit.classList.remove('popup_active')
-} 
-closeButtonEdit.addEventListener('click', closePopupEdit) 
-
-
-
-
-/*closeButtonEdit.addEventListener('click', function closePopupEdit(){
-    popupEdit.classList.remove('popup_active')
- 
-})*/
-
-closeButtonNewPlace.addEventListener('click', function closePopupPlace() {
-    popupNewPlace.classList.remove('popup_active')
-
-})
-
-function handleFormSubmit (evt) {
-    evt.preventDefault();
-
-
-   nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    closePopupEdit();
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
 }
+openButtonEdit.addEventListener('click',  openEditPopup);
 
-formElement.addEventListener('submit', handleFormSubmit);
+function closeEditPopup(){
+    popupEdit.classList.remove('popup_active');
+}
+closeButtonEdit.addEventListener('click',  closeEditPopup);
+
+function handleEditFormSubmit (evt){
+    evt.preventDefault();
+    nameProfile.textContent = nameInput.value;
+    jobProfile.textContent = jobInput.value;
+    closeEditPopup()
+}
+formEditElement.addEventListener('submit', handleEditFormSubmit);
+
+const openButtonPlace = document.querySelector('.profile__plus')
+const popupPlace = document.querySelector('.popup.popup_theme_place')
+const closeButtonPlace = document.querySelector('.popup__close_icon_place')
+const formPlaceElement = document.querySelector('.popup__form_theme_place')
+
+function openPopupPlace(){
+    popupPlace.classList.add('popup_active');
+}
+openButtonPlace.addEventListener('click',openPopupPlace);
+
+function closePopupPlace() {
+    popupPlace.classList.remove('popup_active');
+}
+closeButtonPlace.addEventListener("click",closePopupPlace);
+
+function handleFormPlaceSubmit (evt) {
+  evt.preventDefault();
+  addCards(placeInput.value,linkInput.value);
+  placeInput.value = '';
+  linkInput.value = '';
+  closePopupPlace()
+}
+formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);
+
+
+const gallaryContainer = document.querySelector('.gallary__cards');
+
+const gallaryTemplate = document.querySelector('.gallary__template').content;
+const galleryCloneElement = gallaryTemplate.cloneNode(true);
+const placeInput = document.querySelector('.popup__info_input_place');
+const linkInput = document.querySelector('.popup__info_input_link');
+
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+console.log(initialCards)
+
+    initialCards.forEach(function(element) {
+      const galleryCloneElement = gallaryTemplate.cloneNode(true);
+
+      galleryCloneElement.querySelector('.gallary__text').textContent = element.name;
+      galleryCloneElement.querySelector('.gallary__item').src = element.link;
+      galleryCloneElement.querySelector('.gallary__icon').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('gallary__icon_active');
+       
+      })
+        gallaryContainer.append(galleryCloneElement);
+    })
+
+    function addCards(PlaceValue, LinkValue) {
+      const cardElement = gallaryTemplate.cloneNode(true);
+      const placeInput = document.querySelector('.popup__info_input_place');
+      const linkInput = document.querySelector('.popup__info_input_link');
+
+      cardElement.querySelector('.gallary__item').src = linkInput.value;
+      cardElement.querySelector('.gallary__text').textContent = placeInput.value;
+     
+      cardElement.querySelector('.gallary__icon').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('gallary__icon_active');
+       
+      })
+      gallaryContainer.prepend(cardElement)
+    }
+
+
+
+
+      
+
+
+    
+
+
 
 

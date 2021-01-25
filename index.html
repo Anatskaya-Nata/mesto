@@ -26,7 +26,7 @@
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__icon" type="button"></button>
         </div>
-          <p class="profile__job">Исследователь океана</p>
+        <p class="profile__job">Исследователь океана</p>
       </div>
 
       <button class="profile__plus" type="button">
@@ -37,7 +37,7 @@
     <section class="gallary">
       <ul class="gallary__cards">
 
-      <!--  <li class="gallary__card">
+        <!--  <li class="gallary__card">
           <img src="./images/karachaevsk.jpg" alt="старая церковь" class="gallary__item">
           <div class="gallary__info">
             <p class="gallary__text">Карачаевск</p>
@@ -109,82 +109,80 @@
   <section class="popup popup_theme_edit">
     <div class="popup__container">
 
-      <form class="popup__form" 
-            name="edit-profie">
+      <form class="popup__form popup__form_theme_edit" name="edit-profie">
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input 
-        type="text" 
-        name="user-name" 
-        placeholder="Имя" 
-        value=" "
-          class=" popup__info popup__info_input_name">
-        <input 
-        type="text" 
-        name="user-job" 
-        placeholder="О себе"
-         value=" "
-          class="popup__info popup__info_input_job">
+        <input type="text" name="user-name" placeholder="Имя" value=" " class=" popup__info popup__info_input_name">
+        <input type="text" name="user-job" placeholder="О себе" value=" " class="popup__info popup__info_input_job">
 
         <button class="popup__button" type="submit">Сохранить</button>
 
-        <button class="popup__close popup__close_icon_edit" type="button"></button> 
+        <button class="popup__close popup__close_icon_edit" type="button"></button>
       </form>
-   
+
     </div>
   </section>
 
   <section class="popup popup_theme_place">
     <div class="popup__container">
 
-      <form class="popup__form" 
-            name="new-place">
+      <form class="popup__form popup__form_theme_place" name="new-place">
         <h2 class="popup__title">Новое место</h2>
 
-        <input 
-        type="text" 
-        name="place" 
-        placeholder="Название" 
-        value=" "
-          class=" popup__info popup__info_input_place">
-        <input 
-        type="text" 
-        name="link" 
-        placeholder="Ссылка на картинку"
-         value=" "
-          class="popup__info popup__info_input_link">
+        <input type="text" name="place" placeholder=" Название" class="popup__info popup__info_input_place">
+        <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__info popup__info_input_link">
 
         <button class="popup__button" type="submit">Создать</button>
 
-        <button class="popup__close popup__close_icon_place" type="button"></button> 
+        <button class="popup__close popup__close_icon_place" type="button"></button>
       </form>
-   
+
     </div>
-  
-   
+
+
   </section>
+
+  <!--<template class="gallary__init">
+    <li class="gallary__card">
+
+      <img src="" class="gallary__item" alt="виды">
+      <button class="gallary__delete" type="button">
+        <img src="./images/delete.svg" alt="корзина">
+      </button>
+
+      <div class="gallary__info">
+        <p class="gallary__text"></p>
+        <button class="gallary__icon" type="button">
+         <img src="./images/Vector_heart.svg" alt="иконка лайк" class="gallary__like">
+        </button>
+      </div>
+    </li>
+
+  </template>-->
+
+
   <template class="gallary__template">
     <li class="gallary__card">
 
-        <img src="" class="gallary__item" alt="виды" >
-        <button class="gallary__delete" type="button">
-          <img src="./images/delete.svg" alt="корзина">
-        </button> 
-
-
- 
-    <div class="gallary__info">
-      <p class="gallary__text"></p>
-      <button class="gallary__icon" type="button">
-      <img src="./images/Vector_heart.svg" alt="иконка лайк">
+      <img src="" class="gallary__item" alt="виды">
+      <button class="gallary__delete" type="button">
+        <img src="./images/delete.svg" alt="корзина">
       </button>
-    </div>
-  </li>
+
+      <div class="gallary__info">
+        <p class="gallary__text"></p>
+        <button class="gallary__icon" type="button">
+
+        </button>
+      </div>
+    </li>
   </template>
 
 
+
+
+
   <script src="./sctipts/index.js"></script>
-  <script src="./sctipts/addcards.js"></script>
 </body>
 
 </html>
