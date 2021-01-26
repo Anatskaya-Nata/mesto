@@ -88,7 +88,6 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-console.log(initialCards)
 
     initialCards.forEach(function(element) {
       const galleryCloneElement = gallaryTemplate.cloneNode(true);
@@ -97,7 +96,9 @@ console.log(initialCards)
       galleryCloneElement.querySelector('.gallary__item').src = element.link;
       galleryCloneElement.querySelector('.gallary__icon').addEventListener('click', function (evt) {
         evt.target.classList.toggle('gallary__icon_active');
-       
+      })
+      galleryCloneElement.querySelector('.gallary__delete').addEventListener('click',function (evt){
+        evt.target.closest('.gallary__card').remove()
       })
         gallaryContainer.append(galleryCloneElement);
     })
@@ -109,16 +110,44 @@ console.log(initialCards)
 
       cardElement.querySelector('.gallary__item').src = linkInput.value;
       cardElement.querySelector('.gallary__text').textContent = placeInput.value;
-     
-      cardElement.querySelector('.gallary__icon').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('gallary__icon_active');
-       
+      cardElement.querySelector('.gallary__delete').addEventListener('click',function (evt){
+        evt.target.closest('.gallary__card').remove()
       })
+
+      cardElement.querySelector('.gallary__icon').addEventListener('click', function (evt) {
+          evt.target.classList.toggle('gallary__icon_active');
+      })
+      
       gallaryContainer.prepend(cardElement)
     }
 
+   const openButtonImage = document.querySelector('.gallary__item')
+    const closeButtonImage = document.querySelector('.popup__close_icon_image')
+    const popupImage = document.querySelector('.popup_theme_image')
+    const imagePopup = document.querySelector('.popup__image')
+    const textPopup = document.querySelector('.popup__text')
+   
 
 
+
+    function handleOpenBigImg (evt) {
+      popupImage.classList.add('popup_active')
+      const smallCard = document.querySelector('.gallary__item')
+      const textCard = document.querySelector('.gallary__text')
+     imagePopup.src = smallCard.src
+     textPopup.textContent = textCard.textContent
+    
+    }
+    openButtonImage.addEventListener('click', handleOpenBigImg);
+
+
+  
+  function closeImagePopup(){
+      popupImage.classList.remove('popup_active');
+  }
+  closeButtonImage.addEventListener('click',  closeImagePopup)
+
+  
 
       
 
