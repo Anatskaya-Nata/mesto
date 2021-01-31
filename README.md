@@ -8,5 +8,6 @@ https://anatskaya-nata.github.io/mesto/.
  - создается интерактивный попап;
  - применяется адаптивная верстка;
  - создается template-element
- - с помощью template-element coздается новый DOM-элемент и встраивается в HTML структуру
+ - с помощью template-element coздается новый DOM-элемент и встраивается в HTML структуру;
+
  
