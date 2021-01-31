@@ -6,8 +6,12 @@ const nameInput = formEditElement.querySelector('.popup__info_input_name')
 const jobInput = formEditElement.querySelector('.popup__info_input_job')
 const nameProfile = document.querySelector('.profile__name')
 const jobProfile = document.querySelector('.profile__job')
-
-
+const gallaryContainer = document.querySelector('.gallary__cards');
+const gallaryTemplate = document.querySelector('.gallary__template').content;
+const openButtonPlace = document.querySelector('.profile__plus')
+const popupPlace = document.querySelector('.popup.popup_theme_place')
+const closeButtonPlace = document.querySelector('.popup__close_icon_place')
+const formPlaceElement = document.querySelector('.popup__form_theme_place')
 
 function openEditPopup(){
     popupEdit.classList.add('popup_active')
@@ -28,11 +32,6 @@ function handleEditFormSubmit (evt){
     closeEditPopup()
 }
 formEditElement.addEventListener('submit', handleEditFormSubmit);
-
-const openButtonPlace = document.querySelector('.profile__plus')
-const popupPlace = document.querySelector('.popup.popup_theme_place')
-const closeButtonPlace = document.querySelector('.popup__close_icon_place')
-const formPlaceElement = document.querySelector('.popup__form_theme_place')
 
 function openPopupPlace(){
     popupPlace.classList.add('popup_active');
@@ -57,7 +56,7 @@ formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);
 const gallaryContainer = document.querySelector('.gallary__cards');
 
 const gallaryTemplate = document.querySelector('.gallary__template').content;
-const galleryCloneElement = gallaryTemplate.cloneNode(true);
+/*const galleryCloneElement = gallaryTemplate.cloneNode(true);*/
 const placeInput = document.querySelector('.popup__info_input_place');
 const linkInput = document.querySelector('.popup__info_input_link');
 
@@ -89,7 +88,7 @@ const initialCards = [
     }
   ];
 
-    initialCards.forEach(function(element) {
+   /* initialCards.forEach(function(element) {
       const galleryCloneElement = gallaryTemplate.cloneNode(true);
 
       galleryCloneElement.querySelector('.gallary__text').textContent = element.name;
@@ -101,7 +100,7 @@ const initialCards = [
         evt.target.closest('.gallary__card').remove()
       })
         gallaryContainer.append(galleryCloneElement);
-    })
+    })*/
 
     function addCards(PlaceValue, LinkValue) {
       const cardElement = gallaryTemplate.cloneNode(true);
@@ -138,7 +137,7 @@ const initialCards = [
      textPopup.textContent = textCard.textContent
     
     }
-    openButtonImage.addEventListener('click', handleOpenBigImg);
+    gallaryContainer.addEventListener('click', handleOpenBigImg);
 
 
   

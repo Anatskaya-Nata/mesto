@@ -9,6 +9,11 @@
     margin-bottom: 20px;
 
 }
+
+.gallary:hover{
+
+    cursor: pointer;
+    }
 @media screen and (min-width: 1280px){
     .gallary__card{
     max-width: 282px;
