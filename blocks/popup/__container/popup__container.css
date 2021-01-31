@@ -4,4 +4,6 @@
     margin: auto 19px auto 19px;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
+
 }

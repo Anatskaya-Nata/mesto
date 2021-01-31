@@ -1,10 +1,15 @@
 .popup_active{
-  display: flex;
+display: flex;
 visibility: visible;
- opacity: 1;
+opacity: 1;
 
+
+ 
 }
-.popup_active:active{
-  visibility: visible;
- opacity: 0;
+.popup_active:hover{
+/*display: flex;*/
+visibility: visible;
+transition: visibility 0s, opacity 1s linear;
+opacity: 1;
+
 }
