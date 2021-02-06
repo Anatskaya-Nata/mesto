@@ -109,11 +109,16 @@
   <section class="popup popup_theme_edit">
     <div class="popup__container">
 
-      <form class="popup__form popup__form_theme_edit" name="edit-profie">
+      <form novalidate class="popup__form popup__form_theme_edit" name="edit-profie">
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input type="text" name="user-name" placeholder="Имя" value=" " class=" popup__info popup__info_input_name">
-        <input type="text" name="user-job" placeholder="О себе" value=" " class="popup__info popup__info_input_job">
+       <input id="text-input" type="text" class="popup__info  popup__info_input_name" 
+         name="user-name" placeholder="Имя" value=" " required minlength="2" maxlength="40">
+         <span class="popup__info-error text-input-error" ></span>
+
+        <input id="job-input" type="text" name="user-job" placeholder="О себе" value=" " required
+         minlength="2" maxlength="200" class="popup__info popup__info_input_job">
+        <span class="popup__info-error job-input-error" ></span>
 
         <button class="popup__button" type="submit">Сохранить</button>
 
@@ -126,12 +131,12 @@
   <section class="popup popup_theme_place">
     <div class="popup__container">
 
-      <form class="popup__form popup__form_theme_place" name="new-place">
+      <form novalidate class="popup__form popup__form_theme_place" name="new-place">
         <h2 class="popup__title">Новое место</h2>
 
-        <input type="text" name="place" placeholder=" Название" 
+        <input type="text" name="place" placeholder=" Название" required minlength="7"
         class="popup__info popup__info_input_place">
-        <input type="text" name="link" placeholder="Ссылка на картинку" 
+        <input type="text" name="link" placeholder="Ссылка на картинку" required 
         class="popup__info popup__info_input_link">
 
         <button class="popup__button" type="submit">Создать</button>
@@ -173,5 +178,6 @@
 
 
 <script src="./sctipts/index.js"></script>
+<script src="./sctipts/validate.js"></script>
 </body>
 </html>
