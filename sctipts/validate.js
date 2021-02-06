@@ -2,31 +2,32 @@ const formElement = document.querySelector('.popup__form');
 const formInput = formElement.querySelector('.popup__info');
 const formError = formElement.querySelector(`.${formInput.id}-error`); 
 
-console.log(`.${formInput.id}-error`)
+
 formInput.addEventListener('input', function (evt) {
    console.log(evt.target.validity.valid);
   });
 
   
-const showError = (input, errorMessage) => {
-    input.classList.add('popup__info_type_error');
-    formError.textContent = errorMessage;
-    
-    formError.classList.add('popup__info-error_active')
+const showError = (formItem,inputItem, errorMessage) => {
+    const errorItem =  formItem.querySelector(`.${inputItem.id}-error`);
+    inputItem.classList.add('popup__info_type_error');
+    errorItem.textContent = errorMessage;
+    errorItem.classList.add('popup__info-error_active')
  };
 
- const hideError = (input) => {
- input.classList.remove('popup__info_type_error');
- input.classList.remove('popup__info-error_active');
- formError.textContent = ''
+ const hideError = (formItem, inputItem) => {
+    const errorItem =  formItem.querySelector(`.${inputItem.id}-error`);    
+    errorItem.classList.remove('popup__info_type_error');
+    errorItem.classList.remove('popup__info-error_active');
+    errorItem.textContent = ''
  };
 
- const checkInputValidity = () => {
-    if (!formInput.validity.valid) {
+ const checkInputValidity = (formItem, inputItem) => {
+    if (!inputItem.validity.valid) {
       // Передадим сообщение об ошибке вторым аргументом
-      showError(formInput, formInput.validationMessage);
+      showError(formItem, inputItem, formInput.validationMessage);
     } else {
-      hideError(formInput);
+      hideError(formItem, inputItem);
     }
   };
  
@@ -37,8 +38,19 @@ const showError = (input, errorMessage) => {
  });
 
  formInput.addEventListener('input', function () {
-    checkInputValidity();
+    checkInputValidity(formElement,formInput);
     
   });
+
+  function setEventListeners(formItem){
+    const inputList = Array.from(formItem.querySelectorAll('.popup__info'));
+    inputList.forEach((inputItem) => {
+    inputItem.addEventListener('input', function () {
+      checkInputValidity(formItem, inputItem);
+    });
+  });
+}
+
+  setEventListeners(formElement)
  
 
