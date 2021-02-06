@@ -3,6 +3,6 @@
     opacity: 0.5;
     background: #FFFFFF;
     border: 1px solid #000000;
-    user-select: none; 
+    user-select: none;
     pointer-events: none;
 }
