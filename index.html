@@ -120,7 +120,7 @@
          minlength="2" maxlength="200" class="popup__info popup__info_input_job">
         <span class="popup__info-error job-input-error" ></span>
 
-        <button class="popup__button" type="submit">Сохранить</button>
+        <button  class="popup__button" type="submit">Сохранить</button>
 
         <button class="popup__close popup__close_icon_edit" type="button"></button>
       </form>
@@ -134,12 +134,16 @@
       <form novalidate class="popup__form popup__form_theme_place" name="new-place">
         <h2 class="popup__title">Новое место</h2>
 
-        <input type="text" name="place" placeholder=" Название" required minlength="7"
+        <input id="place-input" type="text" name="place" placeholder=" Название" required
+        minlength="2" maxlength="30"
         class="popup__info popup__info_input_place">
-        <input type="text" name="link" placeholder="Ссылка на картинку" required 
-        class="popup__info popup__info_input_link">
+        <span class="popup__info-error place-input-error" ></span>
 
-        <button class="popup__button" type="submit">Создать</button>
+        <input id="link-input" type="url" name="link" placeholder="Ссылка на картинку" required 
+        class="popup__info popup__info_input_link">
+        <span class="popup__info-error link-input-error" ></span>
+
+        <button  class="popup__button" type="submit">Создать</button>
 
         <button class="popup__close popup__close_icon_place" type="button"></button>
       </form>

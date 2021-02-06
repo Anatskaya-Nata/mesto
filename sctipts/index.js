@@ -70,11 +70,13 @@ function closeEditPopup(){
   closePopup(popupEdit)
   }
 closeButtonEdit.addEventListener('click',  closeEditPopup);
+
 function closePopupPlace() {
   closePopup(popupPlace)
 }
 closeButtonPlace.addEventListener("click",closePopupPlace);
 function closeImagePopup(){
+  
   closePopup(popupImage)
   }
 closeButtonImage.addEventListener('click',  closeImagePopup)
