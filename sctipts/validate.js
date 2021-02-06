@@ -58,15 +58,26 @@ const showError = (formItem,inputItem, errorMessage) => {
 
   
 
-  function enableValidation() {
+  function enableValidation(){
+
+    const formList = Array.from(document.querySelectorAll('.popup__form'));
+    formList.forEach((formItem)  => {
+     formItem.addEventListener('submit',(evt) =>{
+     evt.preventDefault();
+     })
+     setEventListeners(formItem)   
+   }); 
+
+  }
+
    const formList = Array.from(document.querySelectorAll('.popup__form'));
    formList.forEach((formItem)  => {
-formItem.addEventListener('submit',(evt) =>{
+    formItem.addEventListener('submit',(evt) =>{
     evt.preventDefault();
     })
     setEventListeners(formItem)   
   }); 
-}
+
  
 
 
@@ -84,5 +95,5 @@ function hasInvalidInput(inputList){
     buttonElement.classList.remove('popup__button_inactive');
   } 
   }
-  
+
   enableValidation()

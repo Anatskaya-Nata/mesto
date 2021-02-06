@@ -1,7 +1,7 @@
 
 const openButtonEdit = document.querySelector('.profile__icon')
 const closeButtonEdit = document.querySelector('.popup__close_icon_edit')
-const editPopup = document.querySelector('.popup')
+const popupOverlay = document.querySelector('.popup')
 const popupEdit = document.querySelector('.popup.popup_theme_edit')
 const formEditElement = document.querySelector('.popup__form_theme_edit')
 const nameInput = formEditElement.querySelector('.popup__info_input_name')
@@ -47,8 +47,10 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
 function openPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('keydown', closeWithEscape);
 }
  
 function openPopupPlace(){
@@ -65,21 +67,66 @@ openButtonEdit.addEventListener('click', openEditPopup);
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-} 
+  document.removeEventListener('keydown', closeWithEscape)
+}
+
 function closeEditPopup(){
   closePopup(popupEdit)
   }
-closeButtonEdit.addEventListener('click',  closeEditPopup);
+closeButtonEdit.addEventListener('click', closeEditPopup);
 
 function closePopupPlace() {
   closePopup(popupPlace)
 }
 closeButtonPlace.addEventListener("click",closePopupPlace);
-function closeImagePopup(){
-  
+
+function closePopupImage() {
   closePopup(popupImage)
+}
+
+closeButtonImage.addEventListener('click', closePopupImage )
+
+
+
+ /* const formOverlay = Array.from(document.querySelectorAll('.popup'));
+  formOverlay.forEach((elementOverlay)  => {
+    elementOverlay.addEventListener('click',function(event) {
+      console.log(event.target)
+      if(event.target == elementOverlay ){
+        console.log(elementOverlay)
+        elementOverlay.classList.remove('popup_active')
+      }
+  })
+
+
+
+  
+})*/
+
+function closeWithEscape(event) {
+  const key = event.key; 
+  if (key === "Escape") {
+    closePopup(popupImage)
+    closePopup(popupPlace)
+    closePopup(popupEdit)
   }
-closeButtonImage.addEventListener('click',  closeImagePopup)
+}
+
+
+function closeWithEmptyPlace() {
+  const formOverlay = Array.from(document.querySelectorAll('.popup'));
+  formOverlay.forEach((elementOverlay)  => {
+    elementOverlay.addEventListener('click',function(event) {
+      console.log(event.target)
+      if(event.target == elementOverlay ){
+        console.log(elementOverlay)
+        elementOverlay.classList.remove('popup_active')
+      }
+  })
+})
+}
+closeWithEmptyPlace()
+
 
 function handleEditFormSubmit (evt){
   evt.preventDefault();

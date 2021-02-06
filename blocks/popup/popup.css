@@ -5,16 +5,11 @@
    bottom: 0;
    left: 0;
    background-color: rgba(0, 0, 0, 0.5);
- /*display: flex;*/
+ display: flex;
    justify-content: center;
    align-items: flex-start;
    opacity: 0;
    visibility: hidden;
-    transition: visibility 0s, opacity 1s linear;
+    transition: visibility 2s, opacity 1s linear;
 }
 
-.popup:hover{
-   visibility: hidden;
-  opacity: 0;
-  
-  }
