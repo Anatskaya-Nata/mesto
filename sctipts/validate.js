@@ -17,24 +17,14 @@ const showError = (formItem,inputItem, errorMessage) => {
 
  const checkInputValidity = (formItem, inputItem) => {
     if (!inputItem.validity.valid) {
-      // Передадим сообщение об ошибке вторым аргументом
+      
       showError(formItem, inputItem, inputItem.validationMessage);
     } else {
       hideError(formItem, inputItem);
     }
   };
  
-
-
- /*formElement.addEventListener('submit', function (evt) {
-   evt.preventDefault();
- });
-
- formInput.addEventListener('input', function () {
-    checkInputValidity(formElement,formInput);
-    
-  });*/
-
+ 
   function setEventListeners(formItem){
     const inputList = Array.from(formItem.querySelectorAll('.popup__info'));
     const buttonElement = formItem.querySelector('.popup__button');
@@ -51,7 +41,7 @@ const showError = (formItem,inputItem, errorMessage) => {
 
   
 
-  function enableValidation(){
+  function enableValidation(data){
 
     const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formItem)  => {
@@ -63,13 +53,13 @@ const showError = (formItem,inputItem, errorMessage) => {
 
   }
 
-   const formList = Array.from(document.querySelectorAll('.popup__form'));
+   /*const formList = Array.from(document.querySelectorAll('.popup__form'));
    formList.forEach((formItem)  => {
     formItem.addEventListener('submit',(evt) =>{
     evt.preventDefault();
     })
     setEventListeners(formItem)   
-  }); 
+  });*/ 
 
  
 
