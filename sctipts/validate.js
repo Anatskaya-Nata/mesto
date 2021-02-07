@@ -1,11 +1,4 @@
-/*const formElement = document.querySelector('.popup__form');
-const formInput = formElement.querySelector('.popup__info');
-const formError = formElement.querySelector(`.${formInput.id}-error`); */
 
-
-/*formInput.addEventListener('input', function (evt) {
-   console.log(evt.target.validity.valid);
-  });*/
 
   
 const showError = (formItem,inputItem, errorMessage) => {

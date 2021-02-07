@@ -87,22 +87,6 @@ function closePopupImage() {
 closeButtonImage.addEventListener('click', closePopupImage )
 
 
-
- /* const formOverlay = Array.from(document.querySelectorAll('.popup'));
-  formOverlay.forEach((elementOverlay)  => {
-    elementOverlay.addEventListener('click',function(event) {
-      console.log(event.target)
-      if(event.target == elementOverlay ){
-        console.log(elementOverlay)
-        elementOverlay.classList.remove('popup_active')
-      }
-  })
-
-
-
-  
-})*/
-
 function closeWithEscape(event) {
   const key = event.key; 
   if (key === "Escape") {
