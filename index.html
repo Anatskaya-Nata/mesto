@@ -37,7 +37,6 @@
     <section class="gallary">
       <ul class="gallary__cards">
 
-        
 
   </main>
   <footer class="footer page__content">
@@ -45,6 +44,7 @@
   </footer>
 
   <section class="popup popup_theme_edit">
+    
     <div class="popup__container">
 
       <form novalidate class="popup__form popup__form_theme_edit" name="edit-profie">
@@ -64,9 +64,11 @@
       </form>
 
     </div>
+
   </section>
 
   <section class="popup popup_theme_place">
+
     <div class="popup__container">
 
       <form novalidate class="popup__form popup__form_theme_place" name="new-place">
@@ -74,21 +76,21 @@
 
         <input id="place-input" type="text" name="place" placeholder=" Название" required minlength="2" maxlength="30"
           class="popup__info popup__info_input_place">
-        <span class="popup__info-error place-input-error"></span>
+        <span class="popup__info-error place-input-error "></span>
 
         <input id="link-input" type="url" name="link" placeholder="Ссылка на картинку" required
           class="popup__info popup__info_input_link">
         <span class="popup__info-error link-input-error"></span>
 
-        <button class="popup__button" type="submit">Создать</button>
+        <button disabled class="popup__button popup__button_place" type="submit">Создать</button>
 
         <button class="popup__close popup__close_icon_place" type="button"></button>
       </form>
 
     </div>
 
-
   </section>
+
 
   <section class="popup popup_theme_image">
     <div class="popup__container popup__container_theme_image">
@@ -116,10 +118,10 @@
     </li>
   </template>
 
-
-
+  <script src="./sctipts/validate.js"></script>
+  <script src="./sctipts/constants.js"></script>
   <script src="./sctipts/index.js"></script>
-  <script src="./sctipts/ghjgh.js"></script>
+
 </body>
 
 </html>
