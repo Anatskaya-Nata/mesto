@@ -1,4 +1,11 @@
+const formElement = document.querySelector('.popup__form');
+const formInput = formElement.querySelector('.popup__info');
+const formError = formElement.querySelector(`.${formInput.id}-error`);
 
+
+/*formInput.addEventListener('input', function (evt) {
+   console.log(evt.target.validity.valid);
+  });*/
 
   
 const showError = (formItem,inputItem, errorMessage) => {
@@ -15,17 +22,27 @@ const showError = (formItem,inputItem, errorMessage) => {
     errorItem.textContent = ''
  };
 
- const checkInputValidity = (formItem, inputItem) => {
+const checkInputValidity = (formItem, inputItem) => {
     if (!inputItem.validity.valid) {
-      
+      // Передадим сообщение об ошибке вторым аргументом
       showError(formItem, inputItem, inputItem.validationMessage);
     } else {
       hideError(formItem, inputItem);
     }
   };
  
- 
-  function setEventListeners(formItem){
+
+
+ /*formElement.addEventListener('submit', function (evt) {
+   evt.preventDefault();
+ });
+
+ formInput.addEventListener('input', function () {
+    checkInputValidity(formElement,formInput);
+    
+  });*/
+
+ function setEventListeners(formItem){
     const inputList = Array.from(formItem.querySelectorAll('.popup__info'));
     const buttonElement = formItem.querySelector('.popup__button');
     
@@ -41,7 +58,7 @@ const showError = (formItem,inputItem, errorMessage) => {
 
   
 
-  function enableValidation(data){
+  function enableValidation(){
 
     const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formItem)  => {
@@ -53,16 +70,7 @@ const showError = (formItem,inputItem, errorMessage) => {
 
   }
 
-   /*const formList = Array.from(document.querySelectorAll('.popup__form'));
-   formList.forEach((formItem)  => {
-    formItem.addEventListener('submit',(evt) =>{
-    evt.preventDefault();
-    })
-    setEventListeners(formItem)   
-  });*/ 
-
- 
-
+  
 
 function hasInvalidInput(inputList){
     return inputList.some((inputItem) => {
@@ -79,4 +87,9 @@ function hasInvalidInput(inputList){
   } 
   }
 
-  enableValidation()
+  /*enableValidation()*/
+  
+
+
+
+  
