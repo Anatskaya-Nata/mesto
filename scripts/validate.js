@@ -68,5 +68,5 @@ function enableValidation(config){
    inputErrorClass: 'popup__info_type_error',
    errorClass: 'popup__info-error_active'})
 
-
+export{showError,hideError,checkInputValidity, }
   
