@@ -15,22 +15,21 @@ import {
   openButtonImage, 
   closeButtonImage, 
   popupImage, 
-  imagePopup, 
-  textPopup, 
+ 
   gallaryContainer, 
   gallaryTemplate, 
   placeInput, 
   linkInput, 
-  submitButton,
+  
+  initialCards,
+  configValidate
 
 } from './constants.js';
 
-import {initialCards,FormPlaceSubmit,Card,MainCardItem,newCard} from './Card.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
-import {config,FormValidator,infoFormValidator,placeFormValidator} from './FormValidator.js';
-
-
-  function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', closeWithEscape);
 }
@@ -38,6 +37,7 @@ import {config,FormValidator,infoFormValidator,placeFormValidator} from './FormV
 function openPopupPlace(){
   openPopup(popupPlace)
   formPlaceElement.reset()
+  placeFormValidator.disableSubmitButton();
 
   }
 openButtonPlace.addEventListener('click',openPopupPlace);
@@ -72,24 +72,23 @@ closeButtonImage.addEventListener('click', closePopupImage )
 
 
 function closeWithEscape(event) {
-  const activePopup = document.querySelector('.popup_active')
   const key = event.key; 
   if (key === "Escape") {
+    const activePopup = document.querySelector('.popup_active')
     closePopup(activePopup)
   }
 }
 
 function closeWithEmptyPlace() {
-  const formOverlay = Array.from(document.querySelectorAll('.popup'));
-  formOverlay.forEach((elementOverlay)  => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((elementOverlay)  => {
     elementOverlay.addEventListener('click',function(event) {
       
       if(event.target == elementOverlay ){
-     
-        elementOverlay.classList.remove('popup_active')
+        closePopup(elementOverlay);
       }
+    })
   })
-})
 }
 closeWithEmptyPlace()
 
@@ -102,22 +101,39 @@ function handleEditFormSubmit (evt){
 }
 formEditElement.addEventListener('submit', handleEditFormSubmit);
 
-function handleFormPlaceSubmit (evt,config) { 
-  evt.preventDefault(); 
- 
- 
-  submitButton.setAttribute('disabled', true); 
-  submitButton.classList.add('popup__button_inactive'); 
-  closePopupPlace() 
-} 
+function handleFormPlaceSubmit (evt) {
+  evt.preventDefault();
+  addUserCards(placeInput.value,linkInput.value)
+  formPlaceElement.reset()
+  placeFormValidator.disableSubmitButton();
+  closePopupPlace()
+}
 formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);
 
+function addUserCards() {
+  const cardUserPlace = new Card(placeInput.value,linkInput.value,'.gallary__template')
+  const cardUserPlaceElement = cardUserPlace.generateCard();
+  gallaryContainer.prepend(cardUserPlaceElement);
+}
 
+function addInitCards() {
+initialCards.forEach ((item) => {
+  const cardInit = new Card(item.name,item.link,'.gallary__template');
+  const cardInitElement = cardInit.generateCard();
+  gallaryContainer.prepend(cardInitElement)
 
+});   
+}
 
+addInitCards(Card)
 
+ 
+const infoFormValidator  = new FormValidator(configValidate,
+  document.querySelector('.popup__form_theme_edit'))
+  infoFormValidator.enableValidation()
 
-
-
-
+  
+const placeFormValidator  = new FormValidator(configValidate,
+  document.querySelector('.popup__form_theme_place'))
+  placeFormValidator.enableValidation()
 
