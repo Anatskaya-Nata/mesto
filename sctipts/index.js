@@ -110,23 +110,31 @@ function handleFormPlaceSubmit (evt) {
 }
 formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);
 
-function addUserCards() {
-  const cardUserPlace = new Card(placeInput.value,linkInput.value,'.gallary__template')
-  const cardUserPlaceElement = cardUserPlace.generateCard();
-  gallaryContainer.prepend(cardUserPlaceElement);
-}
+function addUserCards() { 
+  const cardUserPlace = createCard(placeInput.value,linkInput.value)
+  gallaryContainer.prepend(cardUserPlace);
+ 
+} 
+ 
+function addInitCards() { 
+initialCards.forEach ((item) => { 
+   const cardInitElement = createCard(item.name,item.link)
+   gallaryContainer.prepend(cardInitElement) 
+ 
+});    
+} 
 
-function addInitCards() {
-initialCards.forEach ((item) => {
-  const cardInit = new Card(item.name,item.link,'.gallary__template');
-  const cardInitElement = cardInit.generateCard();
-  gallaryContainer.prepend(cardInitElement)
+function createCard(name, link) {
 
-});   
-}
+  const card = new Card(name, link,'.gallary__template');
+  const cardDomElement = card.generateCard()
+  return cardDomElement
 
+} 
+
+ 
 addInitCards(Card)
-
+    
  
 const infoFormValidator  = new FormValidator(configValidate,
   document.querySelector('.popup__form_theme_edit'))

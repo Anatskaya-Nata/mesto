@@ -1,4 +1,4 @@
-import {submitButton,} from './constants.js';
+
 
  class FormValidator{
   
@@ -12,7 +12,8 @@ import {submitButton,} from './constants.js';
         this._inputErrorClass = configValidate.inputErrorClass
         this._errorClass = configValidate.errorClass
         this._formElement = formElement
-        this._submitButton = submitButton;
+        this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
+        
     
     }
     

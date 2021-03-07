@@ -20,10 +20,10 @@ class Card{
 
     generateCard(){
         this._item = this._getTemplate()
-                
+        const linkItem = this._item.querySelector('.gallary__item')      
         this._item.querySelector('.gallary__text').textContent = this._name;
-        this._item.querySelector('.gallary__item').src = this._link;
-        this._item.querySelector('.gallary__item').alt = 'виды природы';
+        linkItem.src = this._link;
+        linkItem.alt = 'виды природы';
       
         this._setEventListeners()
         return this._item;
