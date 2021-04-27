@@ -1,5 +1,6 @@
-import {openPopup} from './index.js';
-import {popupImage, imagePopup, textPopup} from './constants.js';
+
+
+import {imagePopup} from './index.js'
 
 class Card{
     constructor(name,link,templateSelector) {
@@ -19,12 +20,13 @@ class Card{
     }
 
     generateCard(){
+        
         this._item = this._getTemplate()
         const linkItem = this._item.querySelector('.gallary__item')      
         this._item.querySelector('.gallary__text').textContent = this._name;
         linkItem.src = this._link;
         linkItem.alt = 'виды природы';
-      
+   
         this._setEventListeners()
         return this._item;
         
@@ -38,7 +40,7 @@ class Card{
         }) 
         this._item.querySelector('.gallary__item').addEventListener('click',() => {
           
-            this._handlePreviewPicture()
+            this._handleCardClick()
         }) 
     }
 
@@ -49,11 +51,12 @@ class Card{
         evt.target.closest('.gallary__card').remove() 
        
     }
-    _handlePreviewPicture () {
-       openPopup(popupImage)
-        imagePopup.src =this._link
-        textPopup.textContent = this._name
+    _handleCardClick() {
+
+        imagePopup.open(this._link,this._name)
+
       }
+    
  
 }
 

@@ -47,6 +47,7 @@
         this._toggleButtonState(inputList, this._submitButton);
 
         inputList.forEach(inputItem => {
+         
             inputItem.addEventListener('input', () => {
                this._checkInputValidity(inputItem);
                this._toggleButtonState(inputList, this._submitButton);

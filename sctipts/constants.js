@@ -23,7 +23,7 @@
   const placeInput = document.querySelector('.popup__info_input_place');
   const linkInput = document.querySelector('.popup__info_input_link');
   const submitButton = document.querySelector('.popup__button_place');
-
+ 
   
   const initialCards = [
     {
@@ -64,6 +64,11 @@
     errorClass: 'popup__info-error_active'
   }
 
+  const newUserForm = {
+    nameSelector: '.popup__info_input_name',
+    jobSelector:'.popup__info_input_job'
+  }
+
   export{
     openButtonEdit, 
     closeButtonEdit, 
@@ -89,7 +94,8 @@
     linkInput, 
     submitButton,
     initialCards,
-    configValidate
+    configValidate,
+    newUserForm
   
   }
 

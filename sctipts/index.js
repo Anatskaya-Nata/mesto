@@ -22,64 +22,22 @@ import {
   linkInput, 
   
   initialCards,
-  configValidate
+  configValidate,
+  newUserForm
 
 } from './constants.js';
 
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-
-export function openPopup(popup) {
-  popup.classList.add('popup_active');
-  document.addEventListener('keydown', closeWithEscape);
-}
- 
-function openPopupPlace(){
-  openPopup(popupPlace)
-  formPlaceElement.reset()
-  placeFormValidator.disableSubmitButton();
-
-  }
-openButtonPlace.addEventListener('click',openPopupPlace);
-
-function openEditPopup(){
-  openPopup(popupEdit)
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = jobProfile.textContent;
-}
-openButtonEdit.addEventListener('click', openEditPopup);
-
-function closePopup(popup) {
-  popup.classList.remove('popup_active');
-  document.removeEventListener('keydown', closeWithEscape)
-}
-
-function closeEditPopup(){
-  closePopup(popupEdit)
-  }
-closeButtonEdit.addEventListener('click', closeEditPopup);
-
-function closePopupPlace() {
-  closePopup(popupPlace)
-}
-closeButtonPlace.addEventListener("click",closePopupPlace);
-
-function closePopupImage() {
-  closePopup(popupImage)
-}
-
-closeButtonImage.addEventListener('click', closePopupImage )
+import {Section} from './Section.js';
+import {PopupWithForm} from './PopupWithForm.js';
+import {PopupWithImage} from './PopupWithImage.js';
+import {UserInfo} from './UserInfo.js'
 
 
-function closeWithEscape(event) {
-  const key = event.key; 
-  if (key === "Escape") {
-    const activePopup = document.querySelector('.popup_active')
-    closePopup(activePopup)
-  }
-}
 
-function closeWithEmptyPlace() {
+
+/*function closeWithEmptyPlace() {
   const popupList = Array.from(document.querySelectorAll('.popup'));
   popupList.forEach((elementOverlay)  => {
     elementOverlay.addEventListener('click',function(event) {
@@ -103,45 +61,103 @@ formEditElement.addEventListener('submit', handleEditFormSubmit);
 
 function handleFormPlaceSubmit (evt) {
   evt.preventDefault();
-  addUserCards(placeInput.value,linkInput.value)
+ // addUserCards(placeInput.value,linkInput.value);
+
+ sectionBlock.addItem({name:placeInput.value, link:linkInput.value})
   formPlaceElement.reset()
   placeFormValidator.disableSubmitButton();
   closePopupPlace()
 }
-formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);
+formPlaceElement.addEventListener('submit', handleFormPlaceSubmit);*/
 
-function addUserCards() { 
-  const cardUserPlace = createCard(placeInput.value,linkInput.value)
-  gallaryContainer.prepend(cardUserPlace);
- 
-} 
- 
-function addInitCards() { 
-initialCards.forEach ((item) => { 
-   const cardInitElement = createCard(item.name,item.link)
-   gallaryContainer.prepend(cardInitElement) 
- 
-});    
-} 
 
-function createCard(name, link) {
-
-  const card = new Card(name, link,'.gallary__template');
-  const cardDomElement = card.generateCard()
-  return cardDomElement
-
-} 
 
  
-addInitCards(Card)
-    
+
+
  
 const infoFormValidator  = new FormValidator(configValidate,
   document.querySelector('.popup__form_theme_edit'))
   infoFormValidator.enableValidation()
 
   
-const placeFormValidator  = new FormValidator(configValidate,
+  export const placeFormValidator  = new FormValidator(configValidate,
   document.querySelector('.popup__form_theme_place'))
   placeFormValidator.enableValidation()
 
+
+
+
+  const sectionBlock = new Section ({
+    items: initialCards,
+    renderer: (item,container) => {
+      const card = new Card(item.name, item.link,'.gallary__template');
+      const cardDomElement = card.generateCard()
+      container.prepend(cardDomElement)
+    }
+  },'.gallary__cards')
+
+    sectionBlock.setDefaultItems();
+
+
+
+
+ export const imagePopup = new PopupWithImage ('.popup_theme_image')
+        imagePopup.setEventListeners()
+
+
+ 
+/*const formPlace = new PopupWithForm ({
+ popupSelector:'.popup__form_theme_place',
+
+  handleFormSubmit:() => {
+    sectionBlock.addItem({name:placeInput.value, link:linkInput.value})
+  }*/
+
+  export const formPlace = new PopupWithForm (
+    '.popup_theme_place',
+    function handleSubmit(inputFormValues) {
+      sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
+      console.log(inputFormValues)
+    }, 
+    '.profile__plus' )
+
+  
+/*export const formEdit = new PopupWithForm (
+    '.popup_theme_edit',
+    function (inputFormValues) {
+        const userName = document.querySelector('.profile__name')
+        userName.textContent = inputFormValues['user-name']
+        const userJob = document.querySelector('.profile__job')
+        userJob.textContent = inputFormValues['user-job']
+    }, 
+   '.profile__icon',
+   function () {
+    //TODO:функция при открытии подставляет данные пользователя
+const addingUserValues = new UserInfo(
+
+)
+   }
+    )*/
+
+    export const formEdit = new PopupWithForm (
+      '.popup_theme_edit',
+ 
+      function handleSubmit () {
+      const newValues = new UserInfo(userForm)
+      newValues.setUserInfo()
+      console.log(newValues)
+      },
+     
+      '.profile__icon'
+    )
+    
+  
+
+
+
+
+//formPlace.open()
+ formPlace.setEventListeners()
+formEdit.setEventListeners()
+console.log(formEdit)
