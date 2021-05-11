@@ -1,20 +1,23 @@
 import {Popup} from './Popup.js'
 import {placeFormValidator} from './index.js'
-import {formPlace} from './index.js'
-import {UserInfo} from './UserInfo.js'
+
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector,handleFormSubmit,openButtonSelector,handleFormOpen = function(){}){
+    constructor(popupSelector,handleFormSubmit, openButtonSelector, handleFormOpen ) {
         super(popupSelector)
         this._handleFormSubmit = handleFormSubmit
         this._openButtonSelector = openButtonSelector
+       this._handleFormOpen = handleFormOpen
+       
     }
 
     open(){
         super.open()
-        //TODO: вызвать handleFormOpen
-
-    }
+         //TODO: вызвать handleFormOpen
+     this._handleFormOpen()
+      
+      
+           }
  
 
 _getInputValues(){
@@ -24,7 +27,7 @@ _getInputValues(){
    
     this._inputFormValues = {};
     this._inputList.forEach(input => this._inputFormValues[input.name] = input.value);
-      
+    console.log(this._inputList)
     
       return this._inputFormValues;
 
@@ -50,6 +53,7 @@ setEventListeners(){
     const openButton = document.querySelector( this._openButtonSelector)
     openButton.addEventListener('click', () => {
         this.open()
+
     })
     
 }

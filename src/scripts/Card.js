@@ -2,11 +2,13 @@
 
 import {imagePopup} from './index.js'
 
-class Card{
-    constructor(name,link,templateSelector) {
+
+class Card {
+    constructor(name,link,templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
-        this._templateSelector = templateSelector
+        this._templateSelector = templateSelector;
+       this._handleCardClick = handleCardClick
     }
 
     _getTemplate() {
@@ -26,8 +28,12 @@ class Card{
         this._item.querySelector('.gallary__text').textContent = this._name;
         linkItem.src = this._link;
         linkItem.alt = 'виды природы';
-   
+      
+
+       
         this._setEventListeners()
+        
+
         return this._item;
         
     }
@@ -51,12 +57,12 @@ class Card{
         evt.target.closest('.gallary__card').remove() 
        
     }
-    _handleCardClick() {
+   _handleCardClick() {
+   
+    imagePopup.open(this._link,this._name)
+  }
 
-        imagePopup.open(this._link,this._name)
-
-      }
-    
+  
  
 }
 

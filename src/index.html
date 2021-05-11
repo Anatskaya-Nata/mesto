@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./style/index.css">
+  
 </head>
 
 <body class="page">
@@ -14,13 +14,14 @@
 
     <img src="./images/Vector.svg" alt="Логотип" class="header__logo">
 
+ 
   </header>
 
   <main class="content page__content">
 
     <section class="profile">
       <img src="./images/Kusto.jpg" alt="фото пользователя" class="profile__photo">
-
+      
       <div class="profile__block">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -31,6 +32,7 @@
 
       <button id="openPlus" class="profile__plus " type="button">
         <img src="./images/Vector_plus.svg" alt="кнопка плюс">
+       
       </button>
 
     </section>
@@ -51,11 +53,11 @@
       <form novalidate class="popup__form popup__form_theme_edit" name="edit-profie">
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input id="text-input" type="text" class="popup__info  popup__info_input_name" name="user-name"
+        <input id="text-input" type="text" class="popup__info  popup__info_input_name" name="nick"
           placeholder="Имя" value=" " required minlength="2" maxlength="40">
         <span class="popup__info-error text-input-error"></span>
 
-        <input id="job-input" type="text" name="user-job" placeholder="О себе" value=" " required minlength="2"
+        <input id="job-input" type="text" name="about" placeholder="О себе" value=" " required minlength="2"
           maxlength="200" class="popup__info popup__info_input_job">
         <span class="popup__info-error job-input-error"></span>
 
@@ -121,7 +123,7 @@
 
 
 
-  <script type="module" src="./sctipts/index.js"></script>
+
 
 
 </body>
