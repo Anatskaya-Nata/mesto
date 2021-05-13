@@ -1,10 +1,9 @@
-import '../style/index.css'
+import '../style/index.css' 
 import '../index.html'
 
-
 import {
-  openButtonEdit, 
-  closeButtonEdit, 
+  buttonOpenPopupProfile, 
+ buttonClosePopupProfile, 
   popupOverlay, 
   popupEdit, 
   formEditElement, 
@@ -12,12 +11,12 @@ import {
   jobInput, 
   nameProfile, 
   jobProfile, 
-  openButtonPlace, 
+  buttonOpenPopupPlace, 
   popupPlace, 
-  closeButtonPlace, 
+  buttonClosePopupPlace, 
   formPlaceElement, 
-  openButtonImage, 
-  closeButtonImage, 
+  buttonOpenPopupImage, 
+  buttonClosePopupImage, 
   popupImage, 
  
   gallaryContainer, 
@@ -41,12 +40,13 @@ import {UserInfo} from './UserInfo.js'
 
  
 const infoFormValidator  = new FormValidator(configValidate,
-  document.querySelector('.popup__form_theme_edit'))
+  formEditElement
+  )
   infoFormValidator.enableValidation()
 
   
   export const placeFormValidator  = new FormValidator(configValidate,
-  document.querySelector('.popup__form_theme_place'))
+  formPlaceElement)
   placeFormValidator.enableValidation()
 
 
@@ -56,11 +56,12 @@ const infoFormValidator  = new FormValidator(configValidate,
   const sectionBlock = new Section ({
       items: initialCards,
       renderer: (item,container) => {
-      const card = new Card(item.name, 
-          item.link,
+      const card = new Card(item, 
+        
           '.gallary__template',
             function handleCardClick(){
-              imagePopup.open(item.link,item.name)
+              imagePopup.open(item)
+         
             }
       )      
       const cardDomElement = card.generateCard()
@@ -72,34 +73,35 @@ const infoFormValidator  = new FormValidator(configValidate,
 
   export const formPlace = new PopupWithForm (
     '.popup_theme_place',
-    function handleSubmit(inputFormValues) {
-      sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
-      console.log(inputFormValues)
-    }, 
-    '.profile__plus' )
-
+      function handleSubmit(inputFormValues) {
+        sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
      
+      }, 
+
+      buttonOpenPopupPlace.addEventListener('click', () => {
+      formPlace.open()
+    })
+  )   
+    const newUserValues = new UserInfo({name:'.profile__name', job: '.profile__job'})
+ 
+
     export const formEdit = new PopupWithForm (
       '.popup_theme_edit',
-      function handleSubmit(inputFormValuesNew) { 
-        const newUserValues = new UserInfo({name:inputFormValuesNew.nick, job:inputFormValuesNew.about},
-        '.profile__name',
-        '.profile__job')
-        
-           newUserValues.setUserInfo()
-      },
-     '.profile__icon',
-      function handleFormOpen()  {
-        nameInput.value = nameProfile.textContent;
-        jobInput.value = jobProfile.textContent;
- 
-      },
-         
-    )
+      function handleSubmit(inputFormValuesNew){
+        newUserValues.setUserInfo({name:inputFormValuesNew.nick, job:inputFormValuesNew.about})
+      }
+    ) 
+     
+    buttonOpenPopupProfile.addEventListener('click', () => {
+      formEdit.open()
+      newUserValues. getUserInfo()
+      nameInput.value = nameProfile.textContent;
+      jobInput.value = jobProfile.textContent;
+    }) 
 
  formPlace.setEventListeners()
  formEdit.setEventListeners()
-console.log(formPlace)
+
 
    
 

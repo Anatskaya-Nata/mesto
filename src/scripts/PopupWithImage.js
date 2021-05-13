@@ -1,11 +1,11 @@
-import { imagePopup, textPopup} from './constants.js';
+
 import {Popup} from './Popup.js'
 
 class PopupWithImage extends Popup {
- open(link,name){
+ open(data){
     super.open();
-    imagePopup.src = link
-    textPopup.textContent = name
+    this._popup.querySelector('.popup__image').src = data.link
+    this._popup.querySelector('.popup__text').textContent = data.name
     }  
 }
 

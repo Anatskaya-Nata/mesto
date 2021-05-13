@@ -16,13 +16,6 @@ class Section  {
       }
    }
 
-
-
-
-   
-
-
    export {Section}
 
-  // this._name = items._name
-  // this._link = items._link
+  

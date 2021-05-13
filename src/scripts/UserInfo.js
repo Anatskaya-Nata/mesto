@@ -1,51 +1,24 @@
-import {newUserForm} from './constants.js';
-import { formPlace } from './index.js';
+
 
 class UserInfo {
-    constructor(item,userNamesSelector,userJobSelector){
-        this._name = item.name
-        this._job = item.job
-        this._userNamesSelector = userNamesSelector
-        this._userJobSelector = userJobSelector
-        //console.log(this._name)
-
+  constructor({name:userNamesSelector, job: userJobSelector}){
+    this._name = document.querySelector(userNamesSelector),
+    this._job = document.querySelector(userJobSelector)
     }
     
     getUserInfo(){
-
-       const userName = document.querySelector(this._userNamesSelector)
-       const userJob = document.querySelector(this._userJobSelector)
-       
-        this._data ={
-         name: userName,
-         job: userJob
-        }
-        
-       
-       // userJob.textContent = this._job
-        
      
-    //console.log(this._data.job)
-        
-       
-    return this._data
+    return {name:this._name.textContent,job: this._job.textContent}
    
     }
 
-  
-    
-    setUserInfo(){
-        this.getUserInfo()
-        this._data.name.textContent = this._name
-        this._data.job.textContent =  this._job
-      
-    
-
-      //  console.log(this.getUserInfo())
-        
+          setUserInfo({name,job}){
+     
+        this._name.textContent = name
+        this._job.textContent =  job
+          
     }
 }
-
 
 
 export {UserInfo}

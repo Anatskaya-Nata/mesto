@@ -1,12 +1,12 @@
 
 
-import {imagePopup} from './index.js'
+//import {imagePopup} from './index.js'
 
 
 class Card {
-    constructor(name,link,templateSelector, handleCardClick) {
-        this._name = name;
-        this._link = link;
+    constructor(data,templateSelector, handleCardClick) {
+        this._name = data.name;
+        this._link = data.link;
         this._templateSelector = templateSelector;
        this._handleCardClick = handleCardClick
     }
@@ -27,8 +27,8 @@ class Card {
         const linkItem = this._item.querySelector('.gallary__item')      
         this._item.querySelector('.gallary__text').textContent = this._name;
         linkItem.src = this._link;
-        linkItem.alt = 'виды природы';
-      
+        linkItem.alt = this._name;
+     
 
        
         this._setEventListeners()
@@ -54,13 +54,19 @@ class Card {
         evt.target.classList.toggle('gallary__icon_active')  
     }
     _handleDeleteCard (evt){
-        evt.target.closest('.gallary__card').remove() 
-       
-    }
-   _handleCardClick() {
+       // evt.target.closest('.gallary__card').remove()
    
-    imagePopup.open(this._link,this._name)
-  }
+      this._item.remove() 
+      this._item = null 
+  
+    }
+  /* _handleCardClick() {
+   
+   // imagePopup.open(this._item)
+   this._item.addEventListener('click',() =>{
+       console.log('123')
+   })
+  }*/
 
   
  
