@@ -19,7 +19,6 @@
     
     _showError(inputItem,errorMessage){
         const errorItem = this._formElement.querySelector(`.${inputItem.id}-error`);
-        console.log(errorItem)
         inputItem.classList.add(this._inputErrorClass);
         errorItem.textContent = errorMessage;
         errorItem.classList.add(this._errorClass)

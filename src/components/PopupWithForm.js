@@ -1,9 +1,8 @@
 import {Popup} from './Popup.js'
-import {placeFormValidator} from './index.js'
 
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector,handleFormSubmit, openButtonSelector, handleFormOpen ) {
+    constructor(popupSelector,handleFormSubmit ) {
         super(popupSelector)
         this._handleFormSubmit = handleFormSubmit
         this.form = this._popup.querySelector('.popup__form')
@@ -16,7 +15,7 @@ class PopupWithForm extends Popup {
         
         this._inputFormValues = {}; 
         this._inputList.forEach(input => this._inputFormValues[input.name] = input.value); 
-        console.log(this._inputList) 
+      
         
         return this._inputFormValues; 
     
@@ -31,8 +30,7 @@ class PopupWithForm extends Popup {
         
             this._handleFormSubmit(this._getInputValues())
             this.close()
-            placeFormValidator.disableSubmitButton()
-            console.log(this._getInputValues)
+         
         })
 
     }

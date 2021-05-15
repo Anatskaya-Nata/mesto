@@ -1,4 +1,4 @@
-import {formPlace} from './index.js'
+
 class Popup{
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector)
@@ -28,29 +28,16 @@ class Popup{
     }
     setEventListeners(){
         const closeButton = this._popup.querySelector('.popup__close') 
-         closeButton.addEventListener("click",() => { 
-            
-           this.close() 
-        });
 
-     const formOverlay = Array.from(document.querySelectorAll('.popup'));
-     formOverlay.forEach((elementOverlay)  => {
-       elementOverlay.addEventListener('click',function(event) {
-         
-         if(event.target == elementOverlay ){
+        this._popup.addEventListener('click', event => {
         
-           elementOverlay.classList.remove('popup_active')
-         }
-     })
-   })
-
-
-
-        
-         
-        
-
-            
+                if(event.target ===  event.currentTarget ||
+                    event.target === closeButton) {
+                this.close()
+                
+                } 
+      
+            })
     }    
 }
 export {Popup}

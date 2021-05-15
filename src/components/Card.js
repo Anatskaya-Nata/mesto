@@ -1,8 +1,4 @@
 
-
-//import {imagePopup} from './index.js'
-
-
 class Card {
     constructor(data,templateSelector, handleCardClick) {
         this._name = data.name;
@@ -54,21 +50,11 @@ class Card {
         evt.target.classList.toggle('gallary__icon_active')  
     }
     _handleDeleteCard (evt){
-       // evt.target.closest('.gallary__card').remove()
-   
+    
       this._item.remove() 
       this._item = null 
   
     }
-  /* _handleCardClick() {
-   
-   // imagePopup.open(this._item)
-   this._item.addEventListener('click',() =>{
-       console.log('123')
-   })
-  }*/
-
-  
  
 }
 

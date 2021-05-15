@@ -1,4 +1,5 @@
-import '../style/index.css' 
+//import '../pages/index.css'
+import './index.css' 
 import '../index.html'
 
 import {
@@ -24,18 +25,19 @@ import {
   placeInput, 
   linkInput, 
   
+  
   initialCards,
   configValidate,
   newUserForm
 
-} from './constants.js';
+} from '../components/constants.js';
 
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
-import {Section} from './Section.js';
-import {PopupWithForm} from './PopupWithForm.js';
-import {PopupWithImage} from './PopupWithImage.js';
-import {UserInfo} from './UserInfo.js'
+import {Card} from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+import {Section} from '../components/Section.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {UserInfo} from '../components/UserInfo.js'
 
 
  
@@ -75,12 +77,7 @@ const infoFormValidator  = new FormValidator(configValidate,
     '.popup_theme_place',
       function handleSubmit(inputFormValues) {
         sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
-     
-      }, 
-
-      buttonOpenPopupPlace.addEventListener('click', () => {
-      formPlace.open()
-    })
+        }   
   )   
     const newUserValues = new UserInfo({name:'.profile__name', job: '.profile__job'})
  
@@ -98,6 +95,11 @@ const infoFormValidator  = new FormValidator(configValidate,
       nameInput.value = nameProfile.textContent;
       jobInput.value = jobProfile.textContent;
     }) 
+    
+    buttonOpenPopupPlace.addEventListener('click', () => {
+      placeFormValidator.disableSubmitButton()
+      formPlace.open()
+    })
 
  formPlace.setEventListeners()
  formEdit.setEventListeners()
