@@ -38,8 +38,9 @@ class Card {
             this._handleLikeIcon(evt)
         }) 
         this._item.querySelector('.gallary__delete').addEventListener('click',(evt) => {
-            this._handleDeleteCard(evt)
-        }) 
+            this._handleDeleteCard(evt) 
+            
+      }) 
         this._item.querySelector('.gallary__item').addEventListener('click',() => {
           
             this._handleCardClick()
@@ -55,6 +56,8 @@ class Card {
       this._item = null 
   
     }
+
+    
  
 }
 

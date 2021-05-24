@@ -105,7 +105,17 @@
     </div>
 
   </section>
+  <section class="popup popup_theme_approval">
+    <div class="popup__container">
+        <form class="popup__form popup__form_approval ">
+          <h2 class="popup__title popup__title_approval">Вы уверены? </h2>
+          <button class="popup__button popup__button_approval" type="submit"> Да </button>
+          <button class="popup__close popup__close_icon_approval " type="button"></button>
+        </form>
+    </div>
 
+  </section>
+  popup_active
 
   <template class="gallary__template">
     <li class="gallary__card">
@@ -116,9 +126,11 @@
 
       <div class="gallary__info">
         <p class="gallary__text"></p>
-        <button class="gallary__icon" type="button">
-
-        </button>
+        <div class="gallary__counter">
+          <button class="gallary__icon" type="button"></button>
+          <p class="gallary__quantity">3</p>
+        </div>
+        
       </div>
     </li>
   </template>

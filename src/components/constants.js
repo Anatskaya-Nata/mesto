@@ -23,6 +23,7 @@
   const placeInput = document.querySelector('.popup__info_input_place');
   const linkInput = document.querySelector('.popup__info_input_link');
   const submitButton = document.querySelector('.popup__button_place');
+  
  
   
   const initialCards = [
