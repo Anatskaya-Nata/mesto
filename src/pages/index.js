@@ -49,7 +49,6 @@ groupID: 'cohort-24',
 
  api. getCards()
  .then((cards) => {const sectionBlock = new Section ({
-  //items: initialCards,
     items: cards ,
      renderer: (item,container) => {
      const card = new Card(item, 
@@ -66,17 +65,6 @@ groupID: 'cohort-24',
 })
 
 .catch(e => console.log(`Ошибка при получении карточек: ${e}`))
-//api.setUserData({name:',e', job: '.s'})
-
-api.getUserData()
-
-
-//api.setUserData({name:nameProfile.textContent,job: jobProfile.textContent})
-api.setUserData({name:'Jacques Cousteau', job:'Sailor, researcher'})
-.catch(e => console.log(`Ошибка при отправке данных user: ${e}`)) 
-    
-     
-
 
 const infoFormValidator  = new FormValidator(configValidate,
   formEditElement
@@ -92,25 +80,58 @@ const infoFormValidator  = new FormValidator(configValidate,
   export const imagePopup = new PopupWithImage ('.popup_theme_image')
   imagePopup.setEventListeners()
 
-  export const formPlace = new PopupWithForm (
+  /*export const formPlace = new PopupWithForm (
     '.popup_theme_place',
 
       function handleSubmit(inputFormValues) {
         sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
        }   
+  ) */  
+
+  export const formPlace = new PopupWithForm (
+    '.popup_theme_place',
+      function handleSubmit(inputFormValues) {
+          api.setMyCard({name:inputFormValues.place, link:inputFormValues.link})
+              .then((res) =>{
+                 
+          sectionBlock.setDefaultItems(res)
+         
+            console.log(res)
+            
+          })
+                 
+      } 
+             
   )   
-    const newUserValues = new UserInfo({name:'.profile__name', job: '.profile__job'})
+   const newUserValues = new UserInfo({name:'.profile__name', about: '.profile__job', avatar:'.profile__photo'})
+   
+
+ 
   
 
-    export const formEdit = new PopupWithForm (
-      '.popup_theme_edit',
-      function handleSubmit(inputFormValuesNew){
-        newUserValues.setUserInfo({name:inputFormValuesNew.nick, job:inputFormValuesNew.about})      
-      }
-    ) 
 
+   
+   /* export const formEdit = new PopupWithForm ( 
+      '.popup_theme_edit', 
+      function handleSubmit(inputFormValuesNew){ 
+        newUserValues.setUserInfo({name:inputFormValuesNew.nick, about:inputFormValuesNew.about}) 
+      } 
+    ) */ 
 
-    const formApproval = new PopupWithApproval (
+    export const formEdit = new PopupWithForm ( 
+      '.popup_theme_edit', 
+      function handleSubmit(inputFormValuesNew){ 
+        api.setUserData({name:inputFormValuesNew.nick, about:inputFormValuesNew.about})
+        .then((res) =>{
+          newUserValues.setUserInfo(res)
+          console.log(res)
+         })
+
+        //newUserValues.setUserInfo({name:inputFormValuesNew.nick, about:inputFormValuesNew.about}) 
+      } 
+    )  
+
+    export  const formApproval = new PopupWithApproval (
       '.popup_theme_approval',
       function handleSubmit(){
           console.log('123')
@@ -138,7 +159,25 @@ const infoFormValidator  = new FormValidator(configValidate,
       //apiCards.open()
     })
 
+    
 
+  api.getUserData()
+  .then((res) =>{
+    return newUserValues.setUserInfo(res)
+  
+  })
+  
+  .catch(e => console.log(`Ошибка при получении данных user: ${e}`)) 
+
+  
+
+/* api.setUserData(formEdit)
+      .then((res) =>{
+        formEdit.setEventListeners()
+        console.log(res)
+       })
+    .catch(e => console.log(`Ошибка при отправке данных user: ${e}`))*/
+        
 
  formPlace.setEventListeners()
  formEdit.setEventListeners()

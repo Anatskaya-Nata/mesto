@@ -11,6 +11,7 @@ class Api{
             headers: {
                 authorization: this._token,
             },
+           
         })
         .then((res) => {
             return res.json();
@@ -23,16 +24,22 @@ class Api{
           })
 
     }
-    getUserData(){
+   getUserData(){
         return fetch(`${this._address}/users/me`,{
             method: 'GET',
             headers: {
               authorization: this._token,
             }
         })
+          .then((res) => {
+            return res.json();
+          })
+          .catch((err) => {
+            console.log('Ошибка. Запрос не выполнен: ', err);
+          })
     }
 
-    setUserData() {
+   setUserData(data) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -40,15 +47,35 @@ class Api{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              name: 'Jacques Cousteau',
-              job: 'Sailor, researcher'
+              name: data.name,
+              about: data.about,
+              avatar: data.avatar
             })
         })
-          
+      .then((res) => {
+          return res.json();
+        })
 
+        .catch((err) => {
+          console.log('Ошибка. Запрос не выполнен: ', err);
+        })
+      
         
     }
 
+    setMyCard(item){
+          return fetch(`${this._address}/cards`, {
+            method: 'POST',
+          headers: {
+              authorization: this._token,
+              'Content-Type': 'multipart/form-data'
+          },
+            body: ({
+              name: item.name,
+              link: item.link  
+            })
+      }) 
+    }
 
 }
 
