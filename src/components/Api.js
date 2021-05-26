@@ -64,19 +64,33 @@ class Api{
     }
 
     setMyCard(item){
-          return fetch(`${this._address}/cards`, {
-            method: 'POST',
+      return fetch(`${this._address}/cards`, {
+         method: 'POST',
           headers: {
-              authorization: this._token,
-              'Content-Type': 'multipart/form-data'
+             authorization: this._token,
+           // 'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json.'
           },
-            body: ({
-              name: item.name,
-              link: item.link  
-            })
-      }) 
+          body: JSON.stringify ({
+                  name: item.name,
+                  link: item.link  
+              })
+      })
+      .then((res) => {
+        console.log(res)
+        return res.json();
+      })
+
+      .catch((err) => {
+        console.log('Ошибка. Запрос не выполнен: ', err);
+      })
+    
+
+
     }
 
+          
+          
 }
 
 export {Api}

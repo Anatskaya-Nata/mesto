@@ -64,6 +64,7 @@ groupID: 'cohort-24',
   
 })
 
+
 .catch(e => console.log(`Ошибка при получении карточек: ${e}`))
 
 const infoFormValidator  = new FormValidator(configValidate,
@@ -88,26 +89,47 @@ const infoFormValidator  = new FormValidator(configValidate,
        }   
   ) */  
 
-  export const formPlace = new PopupWithForm (
-    '.popup_theme_place',
-      function handleSubmit(inputFormValues) {
+  /*export const formPlace = new PopupWithForm (
+  '.popup_theme_place',
+  function handleSubmit(inputFormValues) {
           api.setMyCard({name:inputFormValues.place, link:inputFormValues.link})
+          console.log(inputFormValues)
               .then((res) =>{
-                 
-          sectionBlock.setDefaultItems(res)
-         
-            console.log(res)
-            
+                console.log(res)
+               // sectionBlock.addItem(res)       
           })
-                 
-      } 
-             
-  )   
+          .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))   
+      }        
+    ) */  
    const newUserValues = new UserInfo({name:'.profile__name', about: '.profile__job', avatar:'.profile__photo'})
    
-
+   export const formEdit = new PopupWithForm ( 
+        '.popup_theme_edit', 
+        function handleSubmit(inputFormValuesNew){ 
+          api.setUserData({name:inputFormValuesNew.nick, about:inputFormValuesNew.about})
+         
+           .then((res) =>{
+              newUserValues.setUserInfo(res)
+              console.log(res)
+            })
+            .catch(e => console.log(`Ошибка при отправке User данных: ${e}`)) 
+          }
  
-  
+    )
+
+    export const formPlace = new PopupWithForm ( 
+      '.popup_theme_place', 
+     (inputFormValues) => { 
+        api.setMyCard({name:inputFormValues.place, link:inputFormValues.link})
+
+         .then((result) => {
+          sectionBlock.addItem(result)
+          console.log(result)
+        })
+        .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))   
+      }
+        
+  )
 
 
    
@@ -118,18 +140,10 @@ const infoFormValidator  = new FormValidator(configValidate,
       } 
     ) */ 
 
-    export const formEdit = new PopupWithForm ( 
-      '.popup_theme_edit', 
-      function handleSubmit(inputFormValuesNew){ 
-        api.setUserData({name:inputFormValuesNew.nick, about:inputFormValuesNew.about})
-        .then((res) =>{
-          newUserValues.setUserInfo(res)
-          console.log(res)
-         })
 
-        //newUserValues.setUserInfo({name:inputFormValuesNew.nick, about:inputFormValuesNew.about}) 
-      } 
-    )  
+
+
+ 
 
     export  const formApproval = new PopupWithApproval (
       '.popup_theme_approval',
@@ -138,11 +152,10 @@ const infoFormValidator  = new FormValidator(configValidate,
       }
     )
 
-
-  /* const buttonOpenApproval =  document.querySelector('.gallary__delete')
-   buttonOpenApproval.addEventListener('click', () => {
+    const buttonOpenApproval =  document.querySelector('.gallary__delete')
+    buttonOpenApproval.addEventListener('click', () => {
     formApproval.open()
-   })*/
+   })
 
 
      
@@ -169,14 +182,7 @@ const infoFormValidator  = new FormValidator(configValidate,
   
   .catch(e => console.log(`Ошибка при получении данных user: ${e}`)) 
 
-  
 
-/* api.setUserData(formEdit)
-      .then((res) =>{
-        formEdit.setEventListeners()
-        console.log(res)
-       })
-    .catch(e => console.log(`Ошибка при отправке данных user: ${e}`))*/
         
 
  formPlace.setEventListeners()
