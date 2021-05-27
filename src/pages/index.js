@@ -47,26 +47,90 @@ const api = new Api({
   groupID: 'cohort-24',
 })
 
-api.getCards()
-  .then((cards) => {
+
+// const formApproval = new PopupWithApproval(
+//   '.popup_theme_approval'
+// )
+
+
+
+function deleteClickHandler(card) {
+  const formApproval = new PopupWithForm('.popup_theme_approval', deleteCard)
+  formApproval.setEventListeners()
+
+  function deleteCard() {
+    api.deleteCard(card._cardId)
+      .then(res => {
+        card.handleDeleteCard()
+      })
+  }
+
+  formApproval.open()
+}
+
+function likeClickHandler(card) {
+  if(card.isLiked) {
+    api.deleteLike(card._cardId)
+      .then(res => {
+        card.setLikesInfo(res)
+      })
+  } else {
+    api.setLike(card._cardId)
+      .then((res) => {
+        card.setLikesInfo(res)
+      })
+  }
+}
+
+
+api.getFullPageInfo()
+  .then(([cards, userData]) => {
+    console.log('cards', cards)
+    const currentUserId = userData._id // наш id
+    newUserValues.setUserInfo(userData)
+
+    function handleCardClick() {
+      imagePopup.open(item)
+    }
+
     const sectionBlock = new Section({
       items: cards,
       renderer: (item, container) => {
         const card = new Card(item,
+          currentUserId,
           '.gallary__template',
-          function handleCardClick() {
-            imagePopup.open(item)
-          })
+          handleCardClick,
+          deleteClickHandler,
+          likeClickHandler
+          )
         const cardDomElement = card.generateCard()
         container.prepend(cardDomElement)
       }
     }, '.gallary__cards')
     sectionBlock.setDefaultItems()
 
+
+    const formPlace = new PopupWithForm(
+      '.popup_theme_place',
+      (inputFormValues) => {
+        api.setMyCard({ name: inputFormValues.place, link: inputFormValues.link })
+    
+          .then((result) => {
+            sectionBlock.addItem(result)
+            console.log(result)
+          })
+          .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))
+      }
+    )
+    formPlace.setEventListeners()
+
+    buttonOpenPopupPlace.addEventListener('click', () => {
+      placeFormValidator.disableSubmitButton()
+      formPlace.open()
+    })
   })
+  .catch(e => console.log(`Ошибка при получении данных user: ${e}`))
 
-
-  .catch(e => console.log(`Ошибка при получении карточек: ${e}`))
 
 const infoFormValidator = new FormValidator(configValidate,
   formEditElement
@@ -118,19 +182,7 @@ export const formEdit = new PopupWithForm(
 
 )
 
-export const formPlace = new PopupWithForm(
-  '.popup_theme_place',
-  (inputFormValues) => {
-    api.setMyCard({ name: inputFormValues.place, link: inputFormValues.link })
 
-      .then((result) => {
-        sectionBlock.addItem(result)
-        console.log(result)
-      })
-      .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))
-  }
-
-)
 
 
 
@@ -146,12 +198,8 @@ export const formPlace = new PopupWithForm(
 
 
 
-export const formApproval = new PopupWithApproval(
-  '.popup_theme_approval',
-  function handleSubmit() {
-    console.log('123')
-  }
-)
+
+
 
 //   const buttonOpenApproval =  document.querySelector('.gallary__delete')
 //   buttonOpenApproval.addEventListener('click', () => {
@@ -167,29 +215,15 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   jobInput.value = jobProfile.textContent;
 })
 
-buttonOpenPopupPlace.addEventListener('click', () => {
-  placeFormValidator.disableSubmitButton()
-  formPlace.open()
-  //apiCards.open()
-})
-
-
-
-api.getUserData()
-  .then((res) => {
-    return newUserValues.setUserInfo(res)
-
-  })
-
-  .catch(e => console.log(`Ошибка при получении данных user: ${e}`))
 
 
 
 
-formPlace.setEventListeners()
+
+
+
+
 formEdit.setEventListeners()
-
-formApproval.setEventListeners()
 
 
 

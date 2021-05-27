@@ -11,3 +11,7 @@
     padding: 0;
     border: none;
 }
+
+.gallary__delete_hidden {
+    display: none;
+}
