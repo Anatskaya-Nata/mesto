@@ -186,16 +186,6 @@ export const formEdit = new PopupWithForm(
 
 
 
-/* export const formEdit = new PopupWithForm ( 
-   '.popup_theme_edit', 
-   function handleSubmit(inputFormValuesNew){ 
-     newUserValues.setUserInfo({name:inputFormValuesNew.nick, about:inputFormValuesNew.about}) 
-   } 
- ) */
-
-
-
-
 
 
 
