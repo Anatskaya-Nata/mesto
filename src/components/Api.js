@@ -142,7 +142,7 @@ class Api {
       },
       body: JSON.stringify({
 
-        avatar: data.avatar
+        avatar: data.link
       })
     })
       .then((res) => {

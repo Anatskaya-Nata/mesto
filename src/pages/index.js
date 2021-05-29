@@ -19,12 +19,12 @@ import {
   buttonOpenPopupImage,
   buttonClosePopupImage,
   popupImage,
-
+  buttonOpenPopupAvatar,
   gallaryContainer,
   gallaryTemplate,
   placeInput,
   linkInput,
-
+  avatarInput,
 
   initialCards,
   configValidate,
@@ -48,33 +48,11 @@ const api = new Api({
 })
 
 
-// const formApproval = new PopupWithApproval(
-//   '.popup_theme_approval'
-// )
-
-
-
-/*function deleteClickHandler(card) {
-  //const formApproval = new PopupWithForm('.popup_theme_approval', deleteCard)
-  const formApproval = new PopupWithApproval('.popup_theme_approval', deleteCard)
-  formApproval.setEventListeners()
-
-  function deleteCard() {
-    api.deleteCard(card._cardId)
-      .then(res => {
-        card.handleDeleteCard()
-      })
-  }
-
-  formApproval.open()
-}*/
-
-
 
 const formApproval = new PopupWithApproval('.popup_theme_approval',);
 formApproval.setEventListeners()
 
-console.log(formApproval.setEventListeners)
+
 
 //удаление карточки
 function deleteClickHandler(card) {
@@ -93,26 +71,6 @@ function deleteClickHandler(card) {
   formApproval.open()
 
 }
-
-/*const confirmDeleteCard = new PopupWithConfirm('.popup_type_confirm-delete');
-confirmDeleteCard.setEventListeners()
-//удаление карточки
-function handleDeleteCardClick(card) {
-  function deleteCardHandler() {
-    api.removeCard(card.getId())
-      .then(res => {})
-      .catch(console.log)
-  }
-  confirmDeleteCard.setNewSubmitHandler(deleteCardHandler)
-  confirmDeleteCard.open()
-}*/
-
-
-
-
-
-
-
 
 
 function likeClickHandler(card) {
@@ -225,25 +183,7 @@ export const formEdit = new PopupWithForm(
         console.log(res)
       })
       .catch(e => console.log(`Ошибка при отправке User данных: ${e}`))
-  }
-
-)
-
-
-
-
-
-
-
-
-
-
-//   const buttonOpenApproval =  document.querySelector('.gallary__delete')
-//   buttonOpenApproval.addEventListener('click', () => {
-//   formApproval.open()
-//  })
-
-
+  })
 
 buttonOpenPopupProfile.addEventListener('click', () => {
   formEdit.open()
@@ -252,6 +192,44 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   jobInput.value = jobProfile.textContent;
 })
 
+
+
+/*const formAvatar = new PopupWithForm(
+  '.popup_theme_avatar',
+   function handleSubmit(newUserValues) {
+   
+    api.setUserAvatar({avatar:newUserValues.src} )
+      .then((res) => {
+      newUserValues.setUserInfo(res)
+        console.log(res)
+      })
+      .catch(e => console.log(`Ошибка при отправке автара: ${e}`))
+  })*/
+
+  const formAvatar = new PopupWithForm(
+    '.popup_theme_avatar',
+     function handleSubmit(newUserValues) {
+     
+      api.setUserAvatar(newUserValues)
+   
+        .then((res) => {
+        //newUserValues.setUserInfo(res)
+        
+
+          console.log(res)
+        })
+        .catch(e => console.log(`Ошибка при отправке автара: ${e}`))
+
+        buttonOpenPopupAvatar.src = avatarInput.value
+      })
+
+
+formAvatar.setEventListeners()
+
+buttonOpenPopupAvatar.addEventListener('click', () => {
+  formAvatar.open()
+  
+})
 
 
 
