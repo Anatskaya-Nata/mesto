@@ -133,6 +133,27 @@ class Api {
 
   }
 
+  setUserAvatar(data) {
+    return fetch(`${this._address}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+
+        avatar: data.avatar
+      })
+    })
+      .then((res) => {
+        return res.json();
+      })
+
+      .catch((err) => {
+        console.log('Ошибка. Запрос не выполнен: ', err);
+      })
+    }
+
 
 
 }

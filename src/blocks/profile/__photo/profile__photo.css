@@ -9,3 +9,13 @@
     margin: 0 30px 0 0;
   }
 }
+
+.profile__photo:hover{
+  opacity: 0.6;
+
+  cursor: url(../../../images/photem.png ),auto;
+}
+
+/*}C:\Users\q\dev\mesto\src\images\photoEdit.png
+
+//C:\Users\q\dev\mesto\src\blocks\profile\__photo\profile__photo.css*/

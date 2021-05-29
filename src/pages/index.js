@@ -54,8 +54,9 @@ const api = new Api({
 
 
 
-function deleteClickHandler(card) {
-  const formApproval = new PopupWithForm('.popup_theme_approval', deleteCard)
+/*function deleteClickHandler(card) {
+  //const formApproval = new PopupWithForm('.popup_theme_approval', deleteCard)
+  const formApproval = new PopupWithApproval('.popup_theme_approval', deleteCard)
   formApproval.setEventListeners()
 
   function deleteCard() {
@@ -66,7 +67,53 @@ function deleteClickHandler(card) {
   }
 
   formApproval.open()
+}*/
+
+
+
+const formApproval = new PopupWithApproval('.popup_theme_approval',);
+formApproval.setEventListeners()
+
+console.log(formApproval.setEventListeners)
+
+//удаление карточки
+function deleteClickHandler(card) {
+
+  function deleteMyCard()  {
+    api.deleteCard(card._cardId)
+ 
+      .then(res => {
+        card.handleDeleteCard()
+      },
+      formApproval.close()
+      )
+      .catch(e => console.log(`Ошибка при удалении карточки: ${e}`))
+  }
+  formApproval.setNewSubmitHandler(deleteMyCard)
+  formApproval.open()
+
 }
+
+/*const confirmDeleteCard = new PopupWithConfirm('.popup_type_confirm-delete');
+confirmDeleteCard.setEventListeners()
+//удаление карточки
+function handleDeleteCardClick(card) {
+  function deleteCardHandler() {
+    api.removeCard(card.getId())
+      .then(res => {})
+      .catch(console.log)
+  }
+  confirmDeleteCard.setNewSubmitHandler(deleteCardHandler)
+  confirmDeleteCard.open()
+}*/
+
+
+
+
+
+
+
+
 
 function likeClickHandler(card) {
   if(card.isLiked) {
