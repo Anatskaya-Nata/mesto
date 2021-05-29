@@ -24,7 +24,8 @@
   const linkInput = document.querySelector('.popup__info_input_link');
   const submitButton = document.querySelector('.popup__button_place');
   const buttonOpenPopupAvatar = document.querySelector('.profile__photo');
-  const avatarInput = document.querySelector('.popup__info_input_avatar')
+  const avatarInput = document.querySelector('.popup__info_input_avatar');
+  const buttonSubmitAvatar = document.querySelector('.popup__button_avatar')
  
   
   const initialCards = [
@@ -99,7 +100,9 @@
     configValidate,
     newUserForm,
     buttonOpenPopupAvatar,
-    avatarInput
+    avatarInput,
+    buttonSubmitAvatar 
+
   
   }
 

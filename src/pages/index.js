@@ -25,7 +25,7 @@ import {
   placeInput,
   linkInput,
   avatarInput,
-
+  buttonSubmitAvatar,
   initialCards,
   configValidate,
   newUserForm
@@ -124,7 +124,8 @@ api.getFullPageInfo()
             sectionBlock.addItem(result)
             console.log(result)
           })
-          .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))
+          .catch(e => console.log(`Ошибка при отправке карточки: ${e}`)),
+          formEdit.waitButtonSubmit()
       }
     )
     formPlace.setEventListeners()
@@ -148,32 +149,13 @@ export const placeFormValidator = new FormValidator(configValidate,
 placeFormValidator.enableValidation()
 
 
-export const imagePopup = new PopupWithImage('.popup_theme_image')
+ const imagePopup = new PopupWithImage('.popup_theme_image')
 imagePopup.setEventListeners()
 
-/*export const formPlace = new PopupWithForm (
-  '.popup_theme_place',
 
-    function handleSubmit(inputFormValues) {
-      sectionBlock.addItem({name:inputFormValues.place, link:inputFormValues.link})
-     }   
-) */
-
-/*export const formPlace = new PopupWithForm (
-'.popup_theme_place',
-function handleSubmit(inputFormValues) {
-        api.setMyCard({name:inputFormValues.place, link:inputFormValues.link})
-        console.log(inputFormValues)
-            .then((res) =>{
-              console.log(res)
-             // sectionBlock.addItem(res)       
-        })
-        .catch(e => console.log(`Ошибка при отправке карточки: ${e}`))   
-    }        
-  ) */
 const newUserValues = new UserInfo({ name: '.profile__name', about: '.profile__job', avatar: '.profile__photo' })
 
-export const formEdit = new PopupWithForm(
+ const formEdit = new PopupWithForm(
   '.popup_theme_edit',
   function handleSubmit(inputFormValuesNew) {
     api.setUserData({ name: inputFormValuesNew.nick, about: inputFormValuesNew.about })
@@ -182,8 +164,9 @@ export const formEdit = new PopupWithForm(
         newUserValues.setUserInfo(res)
         console.log(res)
       })
-      .catch(e => console.log(`Ошибка при отправке User данных: ${e}`))
-  })
+      .catch(e => console.log(`Ошибка при отправке User данных: ${e}`)),
+      formEdit.waitButtonSubmit()
+  } )
 
 buttonOpenPopupProfile.addEventListener('click', () => {
   formEdit.open()
@@ -194,33 +177,21 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 
 
 
-/*const formAvatar = new PopupWithForm(
-  '.popup_theme_avatar',
-   function handleSubmit(newUserValues) {
-   
-    api.setUserAvatar({avatar:newUserValues.src} )
-      .then((res) => {
-      newUserValues.setUserInfo(res)
-        console.log(res)
-      })
-      .catch(e => console.log(`Ошибка при отправке автара: ${e}`))
-  })*/
-
   const formAvatar = new PopupWithForm(
     '.popup_theme_avatar',
      function handleSubmit(newUserValues) {
      
       api.setUserAvatar(newUserValues)
-   
-        .then((res) => {
-        //newUserValues.setUserInfo(res)
-        
 
+        .then((res) => {
+        
           console.log(res)
         })
         .catch(e => console.log(`Ошибка при отправке автара: ${e}`))
 
-        buttonOpenPopupAvatar.src = avatarInput.value
+        buttonOpenPopupAvatar.src = avatarInput.value,
+    
+        formAvatar.waitButtonSubmit(newUserValues)
       })
 
 

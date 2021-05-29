@@ -2,11 +2,11 @@ import {Popup} from './Popup.js'
 
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector,handleFormSubmit ) {
+    constructor(popupSelector,handleFormSubmit,submitButton) {
         super(popupSelector)
         this._handleFormSubmit = handleFormSubmit
         this.form = this._popup.querySelector('.popup__form')
-      
+        this.submitButton = this.form.querySelector('.popup__button')
     }
         _getInputValues(){ 
         
@@ -20,6 +20,15 @@ class PopupWithForm extends Popup {
         return this._inputFormValues; 
     
         } 
+
+
+        waitButtonSubmit(isLoading){
+
+            if(isLoading){
+                this.submitButton.textContent = 'Coхранение.....'
+            }
+
+        }
     
 
     setEventListeners() {
