@@ -9,4 +9,5 @@ class PopupWithImage extends Popup {
     }  
 }
 
-export{PopupWithImage}
+
+export default PopupWithImage

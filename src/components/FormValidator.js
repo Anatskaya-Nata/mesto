@@ -83,11 +83,10 @@
         this._setEventListeners()   
     }
 
-
 }
 
 
 
-export {FormValidator}
+export default FormValidator
 
   

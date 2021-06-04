@@ -14,8 +14,7 @@ class Section  {
       this._renderer(element,this._container) 
     } 
  } 
+ 
 
-
-   export {Section}
-
+   export default Section
   
