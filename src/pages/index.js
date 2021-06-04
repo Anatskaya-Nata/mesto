@@ -55,7 +55,7 @@ formApproval.setEventListeners()
 function deleteClickHandler(card) {
 	function deleteMyCard() {
 		api
-			.deleteCard(card._cardId)
+			.deleteCard(card.cardId)
 
 			.then((res) => {
 				card.handleDeleteCard()
@@ -69,11 +69,11 @@ function deleteClickHandler(card) {
 
 function likeClickHandler(card) {
 	if (card.isLiked) {
-		api.deleteLike(card._cardId).then((res) => {
+		api.deleteLike(card.cardId).then((res) => {
 			card.setLikesInfo(res)
 		})
 	} else {
-		api.setLike(card._cardId).then((res) => {
+		api.setLike(card.cardId).then((res) => {
 			card.setLikesInfo(res)
 		})
 	}
@@ -115,7 +115,7 @@ api
 		const formPlace = new PopupWithForm(
 			'.popup_theme_place',
 			(inputFormValues) => {
-				formEdit.waitButtonSubmit()
+				formPlace.waitButtonSubmit(true)
 				api
 					.setMyCard({
 						name: inputFormValues.place,
@@ -128,10 +128,7 @@ api
 						console.log(res)
 					})
 					.catch((e) => console.log(`Ошибка при отправке карточки: ${e}`))
-					.finally(() =>
-						formEdit.waitButtonSubmit(buttonSubmitPlace.textContent)
-					)
-				///	formEdit.waitButtonSubmit()
+					.finally(() => formPlace.waitButtonSubmit(false))
 			}
 		)
 
@@ -164,7 +161,7 @@ const newUserValues = new UserInfo({
 const formEdit = new PopupWithForm('.popup_theme_edit', function handleSubmit(
 	inputFormValuesNew
 ) {
-	formEdit.waitButtonSubmit()
+	formEdit.waitButtonSubmit(true)
 	api
 		.setUserData({
 			name: inputFormValuesNew.nick,
@@ -178,7 +175,7 @@ const formEdit = new PopupWithForm('.popup_theme_edit', function handleSubmit(
 		})
 		.catch((e) => console.log(`Ошибка при отправке User данных: ${e}`))
 
-	//	.finally(() => formEdit.waitButtonSubmit('Сохранить'))
+		.finally(() => formEdit.waitButtonSubmit(false))
 })
 
 buttonOpenPopupProfile.addEventListener('click', () => {
@@ -191,7 +188,7 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 const formAvatar = new PopupWithForm(
 	'.popup_theme_avatar',
 	function handleSubmit(newUserValues) {
-		formAvatar.waitButtonSubmit(newUserValues),
+		formAvatar.waitButtonSubmit(true),
 			api
 				.setUserAvatar(newUserValues)
 
@@ -206,9 +203,8 @@ const formAvatar = new PopupWithForm(
 					formAvatar.close()
 				})
 				.catch((e) => console.log(`Ошибка при отправке автара: ${e}`))
-		console
-			.log(buttonSubmitAvatar)
-			.finally(() => formEdit.waitButtonSubmit(buttonSubmitAvatar.textContent))
+
+				.finally(() => formAvatar.waitButtonSubmit(false))
 	}
 )
 

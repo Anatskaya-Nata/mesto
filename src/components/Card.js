@@ -10,7 +10,7 @@ class Card {
 		this._name = data.name
 		this._link = data.link
 		this._cardOwnerId = data.owner._id
-		this._cardId = data._id
+		this.cardId = data._id
 		this._currentUserId = currentUserId
 		this._templateSelector = templateSelector
 		this._likes = data.likes

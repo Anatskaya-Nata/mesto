@@ -26,7 +26,7 @@ const buttonSubmitPlace = document.querySelector('.popup__button_place')
 const buttonOpenPopupAvatar = document.querySelector('.profile__photo')
 const avatarInput = document.querySelector('.popup__info_input_avatar')
 const buttonSubmitAvatar = document.querySelector('.popup__button_avatar')
-const buttonSubmitEdit = document.querySelector('popup__button_edit')
+const buttonSubmitEdit = document.querySelector('.popup__button_edit')
 
 const initialCards = [
 	{

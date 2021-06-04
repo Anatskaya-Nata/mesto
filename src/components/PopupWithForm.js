@@ -6,6 +6,8 @@ class PopupWithForm extends Popup {
 		this._handleFormSubmit = handleFormSubmit
 		this.form = this._popup.querySelector('.popup__form')
 		this.submitButton = this.form.querySelector('.popup__button')
+		this._defaultSubmitText =
+			this._popup.querySelector('.popup__button').textContent
 	}
 	_getInputValues() {
 		this._inputList = Array.from(this._popup.querySelectorAll('.popup__info'))
@@ -22,6 +24,7 @@ class PopupWithForm extends Popup {
 		if (isLoading) {
 			this.submitButton.textContent = 'Coхранение.....'
 		} else {
+			this.submitButton.textContent = this._defaultSubmitText
 		}
 	}
 
